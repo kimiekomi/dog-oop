@@ -1,6 +1,4 @@
 
-
-
 OOP - 
 
 Create a person object. what actions or attributes a person can have/do
@@ -54,7 +52,4 @@ Dog
 
 - eat
 - sleep
-- eat
-- potty
-- play
 - walk

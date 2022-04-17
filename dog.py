@@ -9,6 +9,10 @@ class Dog:
         self.age = age
         self.breed = breed
 
+        is_hungry = False
+        is_tired = False
+        is_bored = False
+
     @property
     def name(self):
         return self.name
@@ -32,6 +36,27 @@ class Dog:
     @breed.setter
     def name(self, new_breed):
         self.name = new_breed
+
+
+    def eat(self):
+        if debug: print("called eat()")
+
+        if self.is_hungry: 
+            print("munch munch munch")
+
+
+    def sleep(self):
+        if debug: print("called sleep()")
+
+        if self.is_tired: 
+            print("zzz zzz zzz")
+
+
+    def walk(self):
+        if debug: print("called walk()")
+
+        if self.is_bored: 
+            print("trot trot trot")
 
 
 if __name__ == "__main__":
