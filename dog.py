@@ -11,6 +11,7 @@ class Timer:
 
         self.start_time = None
 
+
     def start(self):
         if debug: print("called start()")
 
@@ -21,6 +22,20 @@ class Timer:
 
         if trace: print(f"Start Time: {self.start_time:0.1f}")
 
+    
+    def check_time(self):
+        if debug: print("called check_time()")
+
+        if self.start_time == None:
+            print("Timer has NOT started")
+
+        self.current_time = time.perf_counter()
+
+        print(f"Current Time: {self.current_time:0.1f}")
+
+        return self.current_time
+
+
     def stop(self):
         if debug: print("called stop()")
 
@@ -28,11 +43,22 @@ class Timer:
             print("Timer has NOT started")
 
         self.stop_time = time.perf_counter()
-        self.elapsed_time = self.stop_time - self.start_time
-
         self.start_time = None
 
+        if trace: print(f"Stop Time: {self.stop_time:0.1f}")
+
+    
+    def elapsed_time(self):
+        if debug: print("called elapsed_time()")
+
+        if self.start_time == None:
+            print("Timer has NOT started")
+
+        self.elapsed_time = self.stop_time - self.start_time
+
         if trace: print(f"Elapsed Time: {self.elapsed_time:0.1f} seconds")
+
+        return self.elapsed_time
 
 
 class Dog:
@@ -42,11 +68,17 @@ class Dog:
         self._breed = breed
 
         self.is_hungry = False
-        self.is_tired = False
         self.is_bored = False
+        self.is_tired = False
 
-        timer = Timer()
-        timer.start()
+        self.eat_timer = Timer()
+        self.eat_timer.start()
+
+        self.walk_timer = Timer()
+        self.walk_timer.start()
+
+        self.sleep_timer = Timer()
+        self.sleep_timer.start()
 
         print(f"Created {self._age} year old {self._breed} named {self._name}")
 
@@ -78,23 +110,47 @@ class Dog:
     def eat(self):
         if debug: print("called eat()")
 
-        if self.is_hungry: 
+        if self.eat_timer.elapsed_time() >= 18:
+            self.is_hungry = True
             print("munch munch munch")
+            self.eat_etimer.stop()
+            self.eat_timer.start()
+
+        else:
+            print(f"{self.name} is not hungry")
+
+    
+    def walk(self):
+        if debug: print("called walk()")
+
+        if self.walk_timer.elapsed_time() >= 12:
+            self.is_bored = True
+            print("trot trot trot")
+            self.walk_timer.stop()
+            self.walk_timer.start()
+
+        else:
+            print(f"{self.name} does not need a walk")
 
 
     def sleep(self):
         if debug: print("called sleep()")
 
-        if self.is_tired: 
+        if self.sleep_timer.elapsed_time() >= 36:
+            self.is_tired = True
             print("zzz zzz zzz")
+            self.sleep_timer.stop()
+            self.sleep_timer.start()
+
+        else:
+            print(f"{self.name} is not tired")
 
 
-    def walk(self):
-        if debug: print("called walk()")
+def create_dog():
+    dog = Dog("Lima", 2, "Malamute")
 
-        if self.is_bored: 
-            print("trot trot trot")
+
 
 
 if __name__ == "__main__":
-    dog = Dog("Lima", 2, "Malamute")
+    create_dog()

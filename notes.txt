@@ -51,6 +51,6 @@ Dog
 - age
 - breed
 
-- eat
-- sleep
-- walk
+- eat (every 18 sec)
+- sleep (every 36 sec)
+- walk (every 12 sec)
