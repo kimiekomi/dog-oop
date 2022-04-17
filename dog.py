@@ -7,6 +7,8 @@ trace = True
 
 class Timer:
     def __init__(self):
+        if debug: print("constructed Timer class")
+
         self.start_time = None
 
     def start(self):
@@ -17,7 +19,7 @@ class Timer:
 
         self.start_time = time.perf_counter()
 
-        if trace: print(f"Start Time: {self.start_time}")
+        if trace: print(f"Start Time: {self.start_time:0.1f}")
 
     def stop(self):
         if debug: print("called stop()")
@@ -25,12 +27,12 @@ class Timer:
         if self.start_time == None:
             print("Timer has NOT started")
 
-        stop_time = time.perf_counter()
-        elapsed_time = stop_time - self.start_time
+        self.stop_time = time.perf_counter()
+        self.elapsed_time = self.stop_time - self.start_time
 
-        if trace: print(f"Elapsed Time: {elapsed_time:0.1f} seconds")
-        
         self.start_time = None
+
+        if trace: print(f"Elapsed Time: {self.elapsed_time:0.1f} seconds")
 
 
 class Dog:
@@ -42,6 +44,11 @@ class Dog:
         self.is_hungry = False
         self.is_tired = False
         self.is_bored = False
+
+        timer = Timer()
+        timer.start()
+
+        print(f"Created {self.age} year old {self.breed} named {self.name}")
 
     @property
     def name(self):
@@ -90,4 +97,4 @@ class Dog:
 
 
 if __name__ == "__main__":
-    pass
+    dog = Dog("Lima", 2, "Malamute")
