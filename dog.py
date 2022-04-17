@@ -37,9 +37,9 @@ class Timer:
 
 class Dog:
     def __init__(self, name, age, breed):
-        self.name = name
-        self.age = age
-        self.breed = breed
+        self._name = name
+        self._age = age
+        self._breed = breed
 
         self.is_hungry = False
         self.is_tired = False
@@ -48,31 +48,31 @@ class Dog:
         timer = Timer()
         timer.start()
 
-        print(f"Created {self.age} year old {self.breed} named {self.name}")
+        print(f"Created {self._age} year old {self._breed} named {self._name}")
 
     @property
     def name(self):
-        return self.name
+        return self._name
 
     @name.setter
     def name(self, new_name):
-        self.name = new_name
+        self._name = new_name
 
     @property
     def age(self):
-        return self.age
+        return self._age
 
     @age.setter
-    def name(self, new_age):
-        self.name = new_age
+    def age(self, new_age):
+        self._age = new_age
 
     @property
     def breed(self):
-        return self.breed
+        return self._breed
 
     @breed.setter
-    def name(self, new_breed):
-        self.name = new_breed
+    def breed(self, new_breed):
+        self._breed = new_breed
 
 
     def eat(self):
