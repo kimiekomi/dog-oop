@@ -1,0 +1,60 @@
+
+
+
+OOP - 
+
+Create a person object. what actions or attributes a person can have/do
+
+interactive…create multiple people
+
+user needs to set/change gender/name…need to ask for name/gender
+
+need timer to determine when hungry/sleepy
+
+menu when user type “h”
+
+Class Person
+
+methods: 
+- eat
+- sleep
+- greet
+- shower
+
+- get gender
+- set gender
+
+- get name
+- set name
+
+- get age
+- set age
+
+- get location
+- set location
+
+- get job
+- set job
+
+
+attributes: 
+- gender
+- name
+- age 
+- location
+- job
+- is clean
+- is hungry
+- is sleepy
+
+Dog
+- name
+- age
+- breed
+
+- eat
+- sleep
+- eat
+- potty
+- play
+- walk
