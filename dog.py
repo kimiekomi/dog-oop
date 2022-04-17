@@ -1,7 +1,37 @@
 #! /usr/bin/env python3
 
+import time
+
 debug = True
 trace = True
+
+class Timer:
+    def __init__(self):
+        self.start_time = None
+
+    def start(self):
+        if debug: print("called start()")
+
+        if self.start_time != None:
+            print("Timer already started")
+
+        self.start_time = time.perf_counter()
+
+        if trace: print(f"Start Time: {self.start_time}")
+
+    def stop(self):
+        if debug: print("called stop()")
+
+        if self.start_time == None:
+            print("Timer has NOT started")
+
+        stop_time = time.perf_counter()
+        elapsed_time = stop_time - self.start_time
+
+        if trace: print(f"Elapsed Time: {elapsed_time:0.1f} seconds")
+        
+        self.start_time = None
+
 
 class Dog:
     def __init__(self, name, age, breed):
@@ -9,9 +39,9 @@ class Dog:
         self.age = age
         self.breed = breed
 
-        is_hungry = False
-        is_tired = False
-        is_bored = False
+        self.is_hungry = False
+        self.is_tired = False
+        self.is_bored = False
 
     @property
     def name(self):

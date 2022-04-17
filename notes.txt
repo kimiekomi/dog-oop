@@ -7,7 +7,8 @@ interactive…create multiple people
 
 user needs to set/change gender/name…need to ask for name/gender
 
-need timer to determine when hungry/sleepy
+need timer to determine when hungry/sleepy...import timer
+maybe log activities in .txt file
 
 menu when user type “h”
 
