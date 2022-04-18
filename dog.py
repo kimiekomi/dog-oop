@@ -110,3 +110,18 @@ class Dog:
 if __name__ == "__main__":
     dog = Dog()
 
+    # dog = Dog("Lima", 2, "Malamute")
+    # time.sleep(5)
+    # dog.eat()
+    # time.sleep(3)
+    # dog.eat()
+    # time.sleep(3)
+    # dog.eat()
+
+    # print(dog.breed)
+    # dog.breed = "Corgi"
+    # dog.print()
+
+    # select_dog([['Lima', 2, 'Malamute'], ['Ruby', 2, 'Malamute'], ["Zula", 2, "Malamute"]])
+    # select_dog([['Lima', 2, 'Malamute'], ['Lima', 5, 'Corgi'], ["Zula", 2, "Malamute"], ["Alpha", 3, "Malamute"]])
+

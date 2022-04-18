@@ -1,7 +1,9 @@
 #! /usr/bin/env python3
 
 from timer import Timer
+from dog import Dog
 import time
+
 
 debug = False
 trace = True
@@ -16,6 +18,7 @@ class Doggo_Nation():
         
         self.dog_entries = []
 
+        # create custom dog (instantiate Dog class)
         while True:
             self.dog_name = str(input("\nEnter a dog name (Lima): ")) or "Lima"
             self.dog_age = input("Enter a dog age (2): ") or 2
@@ -37,6 +40,7 @@ class Doggo_Nation():
 
         print("\nLet's Interact with Your Dog!")
         
+        # select dog to interact with
         if len(self.dog_entries) > 1:
             self.active_dog = self.select_dog(self.dog_entries)
 
@@ -44,25 +48,29 @@ class Doggo_Nation():
             self.active_dog = self.entry
 
         self.active_dog_name = self.active_dog[0]
-        self.list_actions(self.active_dog_name)
+        self.list_activities(self.active_dog_name)
 
-        while True:
-            try:
-                self.activity_number = int(input(f"\nEnter an activity number: "))-1
+        # select dog activity
+        self.selected_activity = self.select_activity()
 
-            except:
-                print(">>> ERROR: Enter a valid number")
-                continue
-
-            if self.activity_number > len(self.actions) or self.activity_number <= 0:
-                print(">>> ERROR: That number is not listed")
-                continue
-            
-            break
+        # process dog activity selections 
+        self.process_activity(self.selected_activity)
 
         
+
+    def list_dogs(self, dog_list):
+        if debug: print("called list_dogs()")
+
+        for i, dog in enumerate(dog_list):
+            dog_name = dog[0]
+            dog_age = dog[1]
+            dog_breed = dog[2]
+            
+            print(f"({i+1}) {dog_name}: {dog_age} year old {dog_breed}")
+
+
     def select_dog(self, dog_list):
-        if debug: print("called interact_with_dog()")
+        if debug: print("called select_dog()")
 
         print("\nDog List:")
         self.list_dogs(dog_list)
@@ -86,30 +94,44 @@ class Doggo_Nation():
         return dog_list[self.selected_dog-1]
                 
 
-    def list_dogs(self, dog_list):
-        if debug: print("called list_dogs()")
+    def list_activities(self, dog_name):
+        if debug: print("called list_activities()")
 
-        for i, dog in enumerate(dog_list):
-            dog_name = dog[0]
-            dog_age = dog[1]
-            dog_breed = dog[2]
+        self.actions = ["get dog's name", f"change {dog_name}'s name", f"get {dog_name}'s age", f"get {dog_name}'s breed", f"feed {dog_name}", f"walk {dog_name}", f"put {dog_name} to bed"]
+
+        print(f"\nBelow is a list of activities you can do with {dog_name}:\n")
+
+        for i, action in enumerate(self.actions):
+            print(f"({i+1}) {action}")
+
+
+    def select_activity(self):
+        if debug: print("called select_activity()")
+
+        while True:
+            try:
+                self.activity_number = int(input(f"\nEnter an activity number: "))
+
+            except:
+                print(">>> ERROR: Enter a valid number")
+                continue
+
+            if self.activity_number > len(self.actions) or self.activity_number <= 0:
+                print(">>> ERROR: That number is not listed")
+                continue
             
-            print(f"({i+1}) {dog_name}: {dog_age} year old {dog_breed}")
+            break
+
+        return self.activity_number-1
 
 
-    def list_actions(self, dog_name):
-            if debug: print("called list_actions()")
+    def process_activity(self, activity_number):
+        if debug: print("called process_activity()")
 
-            self.actions = ["get dog's name", f"change {dog_name}'s name", f"get {dog_name}'s age", f"get {dog_name}'s breed", f"feed {dog_name}", f"walk {dog_name}", f"put {dog_name} to bed"]
+        # if trace: print(f"Activity Number is {activity_number}")
 
-            print(f"\nBelow is a list of activities you can do with {dog_name}:\n")
-
-            for i, action in enumerate(self.actions):
-                print(f"({i+1}) {action}")
-
-
-    def process_action(self):
-        pass
+        if activity_number == 0: 
+            print(f"\n>>> Your dog's name is {self.new_dog.name}")
 
 
 def enter_doggo():
