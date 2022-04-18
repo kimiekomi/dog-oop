@@ -39,6 +39,8 @@ class Doggo_Nation():
             if self.create_another_dog != "y":
                 break
 
+        os.system("clear")
+
         print("\nLet's Interact with Your Dog!")
         
         # select dog to interact with
@@ -47,7 +49,8 @@ class Doggo_Nation():
 
         else:
             self.active_dog = self.entry
-            self.active_dog_name = self.active_dog[0]
+        
+        self.active_dog_name = self.active_dog[0]
 
         while True:
             self.list_activities(self.active_dog_name)
