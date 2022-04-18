@@ -107,10 +107,10 @@ class Dog:
             print(f"{self.name} is not tired")
 
 
-def create_dog():
-    if debug: print("called create_dog()")
+def start_doggo():
+    if debug: print("called start_doggo()")
 
-    print("\nLet's Create a Dog!")
+    print("\nWelcome to Doggo Nation! A place where you can create and interact with virtual dogs. Let's start by creating your custom dog!")
 
     dog_entries = []
 
@@ -133,7 +133,7 @@ def create_dog():
         if create_another_dog != "y":
             break
 
-    print("\nLet's Interact with a Dog!")
+    print("\nLet's Interact with Your Dog!")
     
     if len(dog_entries) > 1:
         active_dog = select_dog(dog_entries)
@@ -141,7 +141,7 @@ def create_dog():
     else:
         active_dog = entry
         
-    questions = input(f"\nWhat would you like to know about {active_dog[0]}?\n")
+    questions = input(f"\nWhat would you like to do with {active_dog[0]}?\n")
     
     # if not action in actions: 
     #     print("That information is unknown")
@@ -182,9 +182,18 @@ def list_dogs(dog_list):
         
         print(f"({i+1}) {dog_name}: {dog_age} year old {dog_breed}")
 
+
+def list_actions(dog_name):
+    if debug: print("called list_actions()")
+
+    actions = ["get name", "change name", "get age", "get breed", ]
+
+    for i, action in enumerate(actions):
+        print(f"({i+1}) action")
+
               
 if __name__ == "__main__":
-    create_dog()
+    start_doggo()
 
     # dog = Dog("Lima", 2, "Malamute")
     # time.sleep(5)
