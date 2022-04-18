@@ -3,6 +3,7 @@
 from timer import Timer
 from dog import Dog
 import time
+import os
 
 
 debug = False
@@ -62,6 +63,10 @@ class Doggo_Nation():
             if will_continue != "y":
                 print("\nGoodbye...See you next time!\n")
                 break
+
+            os.system("clear")
+
+        # add feature to switch dogs 
 
 
     def list_dogs(self, dog_list):
@@ -140,7 +145,9 @@ class Doggo_Nation():
             print(f"\n>>> Your dog's name is {self.new_dog.name}.")
 
         if activity_number == 1: 
-            new_name = input(f"\n>>> Your dog's name is {self.new_dog.name}.\nEnter your dog's new name: ")
+            new_name = input(f"\nYour dog's current name is {self.new_dog.name}.\nEnter your dog's new name: ")
+
+            new_name = new_name[0].upper() + new_name[1:]
 
             self.new_dog.name = new_name
             self.active_dog_name = new_name
