@@ -153,36 +153,6 @@ def select_dog(dog_list):
     print("\nDog List:")
     list_dogs(dog_list)
 
-    # while True:
-    #     name = input("\nEnter name of dog you wish to interactive with: ")
-    #     name = name[0].upper() + name[1:].lower()
-
-    #     selected_dogs = []
-        
-    #     for dog in dog_list:
-    #         dog_name = dog[0]
-    #         if dog_name == name:
-    #             selected_dogs.append(dog)
-
-    #     # if trace: print(f"Selected Dogs: {selected_dogs}")
-                    
-    #     if len(selected_dogs) == 0:
-    #         print("\n>>> ERROR: Name NOT found...enter a different name")
-    #         continue
-    
-    #     if len(selected_dogs) == 1:
-    #         selected_dog = selected_dogs[0]
-
-    #     elif len(selected_dogs) > 1:
-    #         print(f"\nThere are more than one dogs with the name {name}:")
-    #         list_dogs(selected_dogs)
-
-    #         try:
-    #             index = int(input("\nEnter the dog number you wish to interact with: "))
-
-    #         except:
-    #             print(">>> ERROR: Enter a valid number")
-
     while True:
         try:
             selected_dog = int(input("\nEnter the dog number you wish to interact with: "))
