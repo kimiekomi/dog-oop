@@ -113,7 +113,7 @@ class Doggo_Nation():
 
 
 def enter_doggo():
-    doggo = Doggo()
+    doggo = Doggo_Nation()
 
     doggo.start_doggo()
 
