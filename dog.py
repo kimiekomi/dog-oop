@@ -1,69 +1,14 @@
 #! /usr/bin/env python3
 
+from timer import Timer
 import time
 
-debug = True
+debug = False
 trace = True
-
-class Timer:
-    def __init__(self):
-        if debug: print("constructed Timer class")
-
-        self.start_time = None
-
-
-    def start(self):
-        if debug: print("called start()")
-
-        if self.start_time != None:
-            print("Timer already started")
-
-        self.start_time = time.perf_counter()
-
-        if trace: print(f"Start Time: {self.start_time:0.1f}")
-
-    
-    def check_time(self):
-        if debug: print("called check_time()")
-
-        if self.start_time == None:
-            print("Timer has NOT started")
-
-        self.current_time = time.perf_counter()
-
-        print(f"Current Time: {self.current_time:0.1f}")
-
-        return self.current_time
-
-
-    def stop(self):
-        if debug: print("called stop()")
-
-        if self.start_time == None:
-            print("Timer has NOT started")
-
-        self.stop_time = time.perf_counter()
-        self.start_time = None
-
-        if trace: print(f"Stop Time: {self.stop_time:0.1f}")
-
-    
-    def elapsed_time(self):
-        if debug: print("called elapsed_time()")
-
-        if self.start_time == None:
-            print("Timer has NOT started")
-
-        self.elapsed_time = self.stop_time - self.start_time
-
-        if trace: print(f"Elapsed Time: {self.elapsed_time:0.1f} seconds")
-
-        return self.elapsed_time
-
 
 class Dog:
     def __init__(self, name, age, breed):
-        self._name = name
+        self._name = name[0].upper() + name[1:].lower()
         self._age = age
         self._breed = breed
 
@@ -80,7 +25,7 @@ class Dog:
         self.sleep_timer = Timer()
         self.sleep_timer.start()
 
-        print(f"Created {self._age} year old {self._breed} named {self._name}")
+        print(f"\n>>> You created a {self._age} year old {self._breed} named {self._name}!")
 
     @property
     def name(self):
@@ -107,13 +52,21 @@ class Dog:
         self._breed = new_breed
 
 
+    def print(self):
+        print(f"{self.name}: {self.age} year old {self.breed}")
+
+
     def eat(self):
         if debug: print("called eat()")
 
-        if self.eat_timer.elapsed_time() >= 18:
+        if self.eat_timer.elapsed_time() >= 5:
             self.is_hungry = True
             print("munch munch munch")
-            self.eat_etimer.stop()
+            
+            time.sleep(1)
+            print(f"{self.name} is done eating")
+            
+            self.eat_timer.stop()
             self.eat_timer.start()
 
         else:
@@ -126,6 +79,10 @@ class Dog:
         if self.walk_timer.elapsed_time() >= 12:
             self.is_bored = True
             print("trot trot trot")
+            
+            time.sleep(1)
+            print(f"{self.name} is done walking")
+            
             self.walk_timer.stop()
             self.walk_timer.start()
 
@@ -139,6 +96,10 @@ class Dog:
         if self.sleep_timer.elapsed_time() >= 36:
             self.is_tired = True
             print("zzz zzz zzz")
+
+            time.sleep(1)
+            print(f"{self.name} is done sleeping")
+            
             self.sleep_timer.stop()
             self.sleep_timer.start()
 
@@ -147,10 +108,127 @@ class Dog:
 
 
 def create_dog():
-    dog = Dog("Lima", 2, "Malamute")
+    if debug: print("called create_dog()")
+
+    print("\nLet's Create a Dog!")
+
+    dog_entries = []
+
+    while True:
+        dog_name = str(input("\nEnter a dog name (Lima): ")) or "Lima"
+        dog_age = input("Enter a dog age (2): ") or 2
+        dog_breed = str(input("Enter a dog breed (Malamute): ")) or "Malamute"
+
+        entry = [dog_name, dog_age, dog_breed]
+
+        if entry in dog_entries:
+            print("\n>>> ERROR: Dog already exists...create a different dog")
+            continue
+        
+        dog_entries.append(entry)
+        new_dog = Dog(dog_name, dog_age, dog_breed)
+        
+        create_another_dog = input("\nCreate another dog? ").lower()
+
+        if create_another_dog != "y":
+            break
+
+    print("\nLet's Interact with a Dog!")
+    
+    if len(dog_entries) > 1:
+        active_dog = select_dog(dog_entries)
+
+    else:
+        active_dog = entry
+        
+    questions = input(f"\nWhat would you like to know about {active_dog[0]}?\n")
+    
+    # if not action in actions: 
+    #     print("That information is unknown")
 
 
+def select_dog(dog_list):
+    if debug: print("called interact_with_dog()")
 
+    print("\nDog List:")
+    list_dogs(dog_list)
 
+    # while True:
+    #     name = input("\nEnter name of dog you wish to interactive with: ")
+    #     name = name[0].upper() + name[1:].lower()
+
+    #     selected_dogs = []
+        
+    #     for dog in dog_list:
+    #         dog_name = dog[0]
+    #         if dog_name == name:
+    #             selected_dogs.append(dog)
+
+    #     # if trace: print(f"Selected Dogs: {selected_dogs}")
+                    
+    #     if len(selected_dogs) == 0:
+    #         print("\n>>> ERROR: Name NOT found...enter a different name")
+    #         continue
+    
+    #     if len(selected_dogs) == 1:
+    #         selected_dog = selected_dogs[0]
+
+    #     elif len(selected_dogs) > 1:
+    #         print(f"\nThere are more than one dogs with the name {name}:")
+    #         list_dogs(selected_dogs)
+
+    #         try:
+    #             index = int(input("\nEnter the dog number you wish to interact with: "))
+
+    #         except:
+    #             print(">>> ERROR: Enter a valid number")
+
+    while True:
+        try:
+            selected_dog = int(input("\nEnter the dog number you wish to interact with: "))
+    
+        except:
+            print(">>> ERROR: Enter a valid number")
+            continue
+
+        break
+
+    dog_name = dog_list[selected_dog-1][0]  
+    dog_age = dog_list[selected_dog-1][1] 
+    dog_breed = dog_list[selected_dog-1][2] 
+    
+    print(f"\n>>> You selected {dog_name} the {dog_age} year old {dog_breed}!")
+    
+    return dog_list[selected_dog-1]
+            
+
+def list_dogs(dog_list):
+    if debug: print("called list_dogs()")
+
+    for i, dog in enumerate(dog_list):
+        dog_name = dog[0]
+        dog_age = dog[1]
+        dog_breed = dog[2]
+        
+        print(f"({i+1}) {dog_name}: {dog_age} year old {dog_breed}")
+
+              
 if __name__ == "__main__":
     create_dog()
+
+    # dog = Dog("Lima", 2, "Malamute")
+    # time.sleep(5)
+    # dog.eat()
+    # time.sleep(3)
+    # dog.eat()
+    # time.sleep(3)
+    # dog.eat()
+
+    # print(dog.breed)
+    # dog.breed = "Corgi"
+    # dog.print()
+
+    # select_dog([['Lima', 2, 'Malamute'], ['Ruby', 2, 'Malamute'], ["Zula", 2, "Malamute"]])
+    # select_dog([['Lima', 2, 'Malamute'], ['Lima', 5, 'Corgi'], ["Zula", 2, "Malamute"], ["Alpha", 3, "Malamute"]])
+
+        
