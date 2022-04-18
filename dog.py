@@ -107,93 +107,116 @@ class Dog:
             print(f"{self.name} is not tired")
 
 
-def start_doggo():
-    if debug: print("called start_doggo()")
+class Doggo():
+    def __init__(self):
+        print("\nWelcome to Doggo Nation! A place where you can create and interact with virtual dogs. Let's start by creating your custom dog!")
 
-    print("\nWelcome to Doggo Nation! A place where you can create and interact with virtual dogs. Let's start by creating your custom dog!")
 
-    dog_entries = []
-
-    while True:
-        dog_name = str(input("\nEnter a dog name (Lima): ")) or "Lima"
-        dog_age = input("Enter a dog age (2): ") or 2
-        dog_breed = str(input("Enter a dog breed (Malamute): ")) or "Malamute"
-
-        entry = [dog_name, dog_age, dog_breed]
-
-        if entry in dog_entries:
-            print("\n>>> ERROR: Dog already exists...create a different dog")
-            continue
+    def start_doggo(self):
+        if debug: print("called start_doggo()")
         
-        dog_entries.append(entry)
-        new_dog = Dog(dog_name, dog_age, dog_breed)
-        
-        create_another_dog = input("\nCreate another dog? ").lower()
+        self.dog_entries = []
 
-        if create_another_dog != "y":
+        while True:
+            self.dog_name = str(input("\nEnter a dog name (Lima): ")) or "Lima"
+            self.dog_age = input("Enter a dog age (2): ") or 2
+            self.dog_breed = str(input("Enter a dog breed (Malamute): ")) or "Malamute"
+
+            self.entry = [self.dog_name, self.dog_age, self.dog_breed]
+
+            if self.entry in self.dog_entries:
+                print("\n>>> ERROR: Dog already exists...create a different dog")
+                continue
+            
+            self.dog_entries.append(self.entry)
+            self.new_dog = Dog(self.dog_name, self.dog_age, self.dog_breed)
+            
+            self.create_another_dog = input("\nCreate another dog? ").lower()
+
+            if self.create_another_dog != "y":
+                break
+
+        print("\nLet's Interact with Your Dog!")
+        
+        if len(self.dog_entries) > 1:
+            self.active_dog = self.select_dog(self.dog_entries)
+
+        else:
+            self.active_dog = self.entry
+
+        self.active_dog_name = self.active_dog[0]
+        self.list_actions(self.active_dog_name)
+
+        while True:
+            try:
+                self.activity_number = int(input(f"\nEnter an activity number: ")) 
+
+            except:
+                print(">>> ERROR: Enter a valid number")
+                continue
+
+            if self.activity_number > len(self.actions) or self.activity_number <= 0:
+                print(">>> ERROR: That number is not listed")
+                continue
+            
             break
 
-    print("\nLet's Interact with Your Dog!")
-    
-    if len(dog_entries) > 1:
-        active_dog = select_dog(dog_entries)
-
-    else:
-        active_dog = entry
         
-    questions = input(f"\nWhat would you like to do with {active_dog[0]}?\n")
-    
-    # if not action in actions: 
-    #     print("That information is unknown")
+    def list_actions(self, dog_name):
+            if debug: print("called list_actions()")
 
+            self.actions = ["get dog's name", f"change {dog_name}'s name", f"get {dog_name}'s age", f"get {dog_name}'s breed", f"feed {dog_name}", f"walk {dog_name}", f"put {dog_name} to bed"]
 
-def select_dog(dog_list):
-    if debug: print("called interact_with_dog()")
+            print(f"\nBelow is a list of activities you can do with {dog_name}:\n")
 
-    print("\nDog List:")
-    list_dogs(dog_list)
+            for i, action in enumerate(self.actions):
+                print(f"({i+1}) {action}")
+                    
 
-    while True:
-        try:
-            selected_dog = int(input("\nEnter the dog number you wish to interact with: "))
-    
-        except:
-            print(">>> ERROR: Enter a valid number")
-            continue
+    def select_dog(self, dog_list):
+        if debug: print("called interact_with_dog()")
 
-        break
+        print("\nDog List:")
+        self.list_dogs(dog_list)
 
-    dog_name = dog_list[selected_dog-1][0]  
-    dog_age = dog_list[selected_dog-1][1] 
-    dog_breed = dog_list[selected_dog-1][2] 
-    
-    print(f"\n>>> You selected {dog_name} the {dog_age} year old {dog_breed}!")
-    
-    return dog_list[selected_dog-1]
+        while True:
+            try:
+                self.selected_dog = int(input("\nEnter the dog number you wish to interact with: "))
+        
+            except:
+                print(">>> ERROR: Enter a valid number")
+                continue
+
+            break
+
+        dog_name = dog_list[self.selected_dog-1][0]  
+        dog_age = dog_list[self.selected_dog-1][1] 
+        dog_breed = dog_list[self.selected_dog-1][2] 
+        
+        print(f"\n>>> You selected {dog_name} the {dog_age} year old {dog_breed}!")
+        
+        return dog_list[self.selected_dog-1]
+                
+
+    def list_dogs(self, dog_list):
+        if debug: print("called list_dogs()")
+
+        for i, dog in enumerate(dog_list):
+            dog_name = dog[0]
+            dog_age = dog[1]
+            dog_breed = dog[2]
             
-
-def list_dogs(dog_list):
-    if debug: print("called list_dogs()")
-
-    for i, dog in enumerate(dog_list):
-        dog_name = dog[0]
-        dog_age = dog[1]
-        dog_breed = dog[2]
-        
-        print(f"({i+1}) {dog_name}: {dog_age} year old {dog_breed}")
+            print(f"({i+1}) {dog_name}: {dog_age} year old {dog_breed}")
 
 
-def list_actions(dog_name):
-    if debug: print("called list_actions()")
+def enter_doggo():
+    doggo = Doggo()
 
-    actions = ["get name", "change name", "get age", "get breed", ]
+    doggo.start_doggo()
 
-    for i, action in enumerate(actions):
-        print(f"({i+1}) action")
 
-              
 if __name__ == "__main__":
-    start_doggo()
+    enter_doggo()
 
     # dog = Dog("Lima", 2, "Malamute")
     # time.sleep(5)
@@ -210,4 +233,5 @@ if __name__ == "__main__":
     # select_dog([['Lima', 2, 'Malamute'], ['Ruby', 2, 'Malamute'], ["Zula", 2, "Malamute"]])
     # select_dog([['Lima', 2, 'Malamute'], ['Lima', 5, 'Corgi'], ["Zula", 2, "Malamute"], ["Alpha", 3, "Malamute"]])
 
-        
+    # list_actions("Lima")
+
