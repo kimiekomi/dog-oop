@@ -41,7 +41,7 @@ class Doggo_Nation():
 
         os.system("clear")
 
-        print("\nLet's Interact with Your Dog!")
+        print("\n*** Let's Interact with Your Dog! ***")
         
         # select dog to interact with
         if len(self.dog_entries) > 1:
@@ -64,12 +64,31 @@ class Doggo_Nation():
             will_continue = input(f"\nWould you like to keep interacting with {self.active_dog_name} (y/n)? ").lower()
 
             if will_continue != "y":
-                print("\nGoodbye...See you next time!\n")
-                break
+                os.system("clear")
+
+                self.list_options()
+
+                while True:
+                    try:
+                        option_number = int(input("\nEnter desired option number: "))-1
+
+                    except:
+                        print(">>> ERROR: Enter a valid number")
+                        continue
+                    
+                    if option_number > len(self.options) or self.activity_number <= 0:
+                        print(">>> ERROR: That number is not listed")
+                        continue 
+
+                    break
+
+                if option_number == 2:
+                    print("\nGoodbye...See you next time!\n")
+                    break
 
             os.system("clear")
 
-        # add feature to switch dogs 
+        # add feature to switch dogs or create new dog(s)
 
 
     def list_dogs(self, dog_list):
@@ -174,6 +193,17 @@ class Doggo_Nation():
         if activity_number == 6:
             print(f"\nLet's put {self.new_dog.name} down for a nap!")
             self.new_dog.sleep()
+
+
+    def list_options(self):
+        if debug: print("called list_options()")
+
+        self.options = ["Create a new dog", "Switch to a different dog", "Exit Program"]
+
+        print("\nWhat would you like to do next?")
+
+        for i, self.option in enumerate(self.options):
+            print(f"({i+1}) {self.option}")
 
 
 def enter_doggo():
