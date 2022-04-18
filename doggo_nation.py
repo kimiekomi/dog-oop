@@ -46,17 +46,23 @@ class Doggo_Nation():
 
         else:
             self.active_dog = self.entry
+            self.active_dog_name = self.active_dog[0]
 
-        self.active_dog_name = self.active_dog[0]
-        self.list_activities(self.active_dog_name)
+        while True:
+            self.list_activities(self.active_dog_name)
 
-        # select dog activity
-        self.selected_activity = self.select_activity()
+            # select dog activity
+            self.selected_activity = self.select_activity()
 
-        # process dog activity selections 
-        self.process_activity(self.selected_activity)
+            # process dog activity selections 
+            self.process_activity(self.selected_activity)
 
-        
+            will_continue = input(f"\nWould you like to keep interacting with {self.active_dog_name} (y/n)? ").lower()
+
+            if will_continue != "y":
+                print("\nGoodbye...See you next time!\n")
+                break
+
 
     def list_dogs(self, dog_list):
         if debug: print("called list_dogs()")
@@ -131,7 +137,33 @@ class Doggo_Nation():
         # if trace: print(f"Activity Number is {activity_number}")
 
         if activity_number == 0: 
-            print(f"\n>>> Your dog's name is {self.new_dog.name}")
+            print(f"\n>>> Your dog's name is {self.new_dog.name}.")
+
+        if activity_number == 1: 
+            new_name = input(f"\n>>> Your dog's name is {self.new_dog.name}.\nEnter your dog's new name: ")
+
+            self.new_dog.name = new_name
+            self.active_dog_name = new_name
+
+            print(f"\n>>> Your dog's name is now {self.new_dog.name}.")
+
+        if activity_number == 2: 
+            print(f"\n>>> Your dog is {self.new_dog.age} year(s) old.")
+
+        if activity_number == 3: 
+            print(f"\n>>> Your dog is a(n) {self.new_dog.breed}.")
+
+        if activity_number == 4: 
+            print(f"\nLet's feed {self.new_dog.name} some kibbles!")
+            self.new_dog.eat()
+
+        if activity_number == 5:
+            print(f"\nLet's take {self.new_dog.name} for a walk!")
+            self.new_dog.walk()
+
+        if activity_number == 6:
+            print(f"\nLet's put {self.new_dog.name} down for a nap!")
+            self.new_dog.sleep()
 
 
 def enter_doggo():
