@@ -10,7 +10,7 @@ trace = True
 
 class Doggo_Nation():
     def __init__(self):
-        print("\nWelcome to Doggo Nation! A place where you can create and interact with virtual dogs.")
+        print("\nWelcome to Doggo Nation! A place where you can create and interact with virtual dogs.\n")
 
 
     def start_doggo(self):

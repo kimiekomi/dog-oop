@@ -61,7 +61,7 @@ class Dog:
 
         if self.eat_timer.elapsed_time() >= 5:
             self.is_hungry = True
-            print("munch munch munch")
+            print("\nmunch munch munch")
             
             time.sleep(1)
             print(f"{self.name} is done eating")
@@ -70,7 +70,7 @@ class Dog:
             self.eat_timer.start()
 
         else:
-            print(f"{self.name} is not hungry")
+            print(f"\n{self.name} is not hungry")
 
     
     def walk(self):
@@ -78,7 +78,7 @@ class Dog:
 
         if self.walk_timer.elapsed_time() >= 12:
             self.is_bored = True
-            print("trot trot trot")
+            print("\ntrot trot trot")
             
             time.sleep(1)
             print(f"{self.name} is done walking")
@@ -87,7 +87,7 @@ class Dog:
             self.walk_timer.start()
 
         else:
-            print(f"{self.name} does not need a walk")
+            print(f"\n{self.name} does not need a walk")
 
 
     def sleep(self):
@@ -95,7 +95,7 @@ class Dog:
 
         if self.sleep_timer.elapsed_time() >= 36:
             self.is_tired = True
-            print("zzz zzz zzz")
+            print("\nzzz zzz zzz")
 
             time.sleep(1)
             print(f"{self.name} is done sleeping")
@@ -104,7 +104,7 @@ class Dog:
             self.sleep_timer.start()
 
         else:
-            print(f"{self.name} is not tired")
+            print(f"\n{self.name} is not tired")
 
 
 if __name__ == "__main__":
