@@ -21,15 +21,11 @@ class Doggo_Nation():
         
         os.system("clear")
 
+        self.activate_dog()
+
         while True:
 
-            # select dog to interact with
-            if len(self.dog_entries) > 1:
-                self.list_dogs(self.dog_entries)
-                self.active_dog = self.select_dog(self.dog_entries)
-
-            else:
-                self.active_dog = self.entry
+            if trace: print(f"Active Dog: {self.active_dog}")
             
             self.active_dog_name = self.active_dog[0]
 
@@ -47,10 +43,12 @@ class Doggo_Nation():
                 break
 
             if next_option == 1:
+                self.activate_dog()
                 continue
 
             if next_option == 2:
                 self.create_dog()
+                self.activate_dog()
                 continue
 
     
@@ -97,10 +95,24 @@ class Doggo_Nation():
             print(f"{dog_name}: {dog_age} year old {dog_breed}")
 
 
+    def activate_dog(self):
+        if debug: print("called activate_dog()")
+
+        # select dog to interact with
+        if len(self.dog_entries) > 1:
+            self.list_dogs(self.dog_entries)
+            self.active_dog = self.select_dog(self.dog_entries)
+
+        else:
+            self.active_dog = self.entry
+
+        return self.active_dog
+
+
     def select_dog(self, dog_list):
         if debug: print("called select_dog()")
 
-        if trace: print(f"Dog List: {dog_list}")
+        # if trace: print(f"Dog List: {dog_list}")
 
         while True:
             input_name = input("\nEnter the dog's name you would like to interact with: ")
@@ -195,11 +207,9 @@ class Doggo_Nation():
             self.new_dog.sleep()
 
         elif "new" in split_activity: 
-            print(f"\nFeature not implemented yet...")
             return 2
         
         elif "switch" in split_activity: 
-            print(f"\nFeature not implemented yet...")
             return 1
 
         elif "exit" in split_activity: 
