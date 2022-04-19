@@ -13,7 +13,6 @@ class Dog:
         self._breed = breed
 
         self.is_hungry = False
-        self.is_bored = False
         self.is_tired = False
 
         self.eat_timer = Timer()
@@ -76,18 +75,13 @@ class Dog:
     def walk(self):
         if debug: print("called walk()")
 
-        if self.walk_timer.elapsed_time() >= 12:
-            self.is_bored = True
-            print("\ntrot trot trot")
-            
-            time.sleep(1)
-            print(f"{self.name} is done walking")
-            
-            self.walk_timer.stop()
-            self.walk_timer.start()
-
-        else:
-            print(f"\n{self.name} does not need a walk")
+        print("\ntrot trot trot")
+        
+        time.sleep(1)
+        print(f"{self.name} is done walking")
+        
+        self.walk_timer.stop()
+        self.walk_timer.start()
 
 
     def sleep(self):

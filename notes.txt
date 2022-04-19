@@ -19,6 +19,7 @@ To Do:
 - might need separate create_dog() and interact_dog() 
 - add option to potty w/ timer, treat
 - remove timer from walk
+- need display_menu(list)...maybe
 
 Dog
 - name
