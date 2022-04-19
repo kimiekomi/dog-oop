@@ -17,7 +17,6 @@ To Do:
 - change menu input...don't accept numbers...split input use contain()
 - add feature to switch dogs or create new dog(s)
 - might need separate create_dog() and interact_dog() 
-- add option to potty w/ timer, treat
 - need display_menu(list)...maybe
 
 Dog

@@ -62,40 +62,8 @@ class Doggo_Nation():
             # process dog activity selections 
             self.process_activity(self.selected_activity)
 
-            will_continue = input(f"\nWould you like to keep interacting with {self.active_dog_name} (y/n)? ").lower()
+            # os.system("clear")
 
-            if will_continue != "y":
-                os.system("clear")
-
-                self.list_options()
-
-                while True:
-                    try:
-                        option_number = int(input("\nEnter desired option number: "))-1
-
-                    except:
-                        print(">>> ERROR: Enter a valid number")
-                        continue
-                    
-                    if option_number > len(self.options) or self.activity_number <= 0:
-                        print(">>> ERROR: That number is not listed")
-                        continue 
-
-                    break
-
-                if option_number == 0:
-                    print("\nFeature not implemented yet\n")
-                    break
-
-                if option_number == 1:
-                    print("\nFeature not implemented yet\n")
-                    break
-
-                if option_number == 2:
-                    print("\nGoodbye...See you next time!\n")
-                    break
-
-            os.system("clear")
 
         # remove will_continue
         # change menu input...don't accept numbers...split input use contain()
@@ -144,12 +112,12 @@ class Doggo_Nation():
     def list_activities(self, dog_name):
         if debug: print("called list_activities()")
 
-        self.actions = ["get dog's name", f"change {dog_name}'s name", f"get {dog_name}'s age", f"get {dog_name}'s breed", f"feed {dog_name}", f"walk {dog_name}", f"let {dog_name} potty", f"give {dog_name} a treat", f"put {dog_name} to bed"]
+        self.activities = ["create a new dog", "switch to a different dog", "", "get dog's name", f"change {dog_name}'s name", f"get {dog_name}'s age", f"get {dog_name}'s breed", f"feed {dog_name}", f"walk {dog_name}", f"let {dog_name} potty", f"give {dog_name} a treat", f"put {dog_name} to bed", "", "exit program"]
 
         print(f"\nBelow is a list of activities you can do with {dog_name}:\n")
 
-        for i, action in enumerate(self.actions):
-            print(f"({i+1}) {action}")
+        for activity in self.activities:
+            print(f"- {activity}")
 
 
     def select_activity(self):
@@ -217,17 +185,11 @@ class Doggo_Nation():
             self.new_dog.sleep()
 
 
-    def list_options(self):
-        if debug: print("called list_options()")
+        if option_number == 2:
+                    print("\nGoodbye...See you next time!\n")
+                    break
 
-        self.options = ["Create a new dog", "Switch to a different dog", "Exit Program"]
 
-        print("\nWhat would you like to do next?")
-
-        for i, self.option in enumerate(self.options):
-            print(f"({i+1}) {self.option}")
-
-    
     def select_option(self):
         pass
 
