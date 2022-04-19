@@ -13,9 +13,9 @@ maybe log activities in .txt file
 menu when user type “h”
 
 To Do:
-- add feature to switch dogs or create new dog(s)
-- need separate interact_dog() 
-- need display_menu(list)...maybe
+- when call create_dog() again, dog_entries is overwritten
+- switch dog not switching in process_activity()
+- process_activity() only used LAST instantiated object
 
 
 Dog

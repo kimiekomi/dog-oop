@@ -21,21 +21,15 @@ class Doggo_Nation():
         
         os.system("clear")
 
-        self.activate_dog()
+        self.active_dog = self.activate_dog()
 
         while True:
-
-            if trace: print(f"Active Dog: {self.active_dog}")
-            
-            self.active_dog_name = self.active_dog[0]
-
-            self.list_activities(self.active_dog_name)
+            # if trace: print(f"Active Dog: {self.active_dog}")
 
             print("\n*** Let's Interact with Your Dog! ***")
-
+            
             # select dog activity
-            self.selected_activity = self.select_activity(self.activities)
-
+            self.selected_activity = self.input_activity()
             # process dog activity selections 
             next_option = self.process_activity(self.selected_activity)
 
@@ -43,12 +37,15 @@ class Doggo_Nation():
                 break
 
             if next_option == 1:
-                self.activate_dog()
-                continue
+                if len(self.dog_entries) > 1:
+                    self.activate_dog()
+                    continue
+
+                print("There is only one dog available...")
 
             if next_option == 2:
                 self.create_dog()
-                self.activate_dog()
+                self.active_dog = self.activate_dog()
                 continue
 
     
@@ -98,15 +95,16 @@ class Doggo_Nation():
     def activate_dog(self):
         if debug: print("called activate_dog()")
 
-        # select dog to interact with
+        print("\n*** Let's Select A Dog! ***")
+
         if len(self.dog_entries) > 1:
             self.list_dogs(self.dog_entries)
-            self.active_dog = self.select_dog(self.dog_entries)
+            activated_dog = self.select_dog(self.dog_entries)
 
         else:
-            self.active_dog = self.entry
+            activated_dog = self.entry
 
-        return self.active_dog
+        return activated_dog
 
 
     def select_dog(self, dog_list):
@@ -115,7 +113,7 @@ class Doggo_Nation():
         # if trace: print(f"Dog List: {dog_list}")
 
         while True:
-            input_name = input("\nEnter the dog's name you would like to interact with: ")
+            input_name = input("\nEnter the dog's name you wish to interact with: ")
 
             input_name = input_name[0].upper() + input_name[1:].lower()
 
@@ -155,12 +153,12 @@ class Doggo_Nation():
             print(f"- {activity}")
 
 
-    def select_activity(self, activity_list):
-        if debug: print("called select_activity()")
+    def input_activity(self):
+        if debug: print("called input_activity()")
 
         # if trace: print(f"Activity List: {activity_list}")
 
-        activity = input(f"\nWhat would you like to do? ").lower()
+        activity = input(f"\nWhat would you like to do (enter 'm' to view full menu)? ").lower()
 
         activity = activity.split()
 
@@ -216,16 +214,11 @@ class Doggo_Nation():
             print("\nGoodbye...See you next time!\n")
             return 0
 
+        elif "m" in split_activity:
+            self.list_activities(self.active_dog[0])
+
         else: 
             print(">>> ERROR: That option is not available")
-
-
-    def select_option(self):
-        pass
-
-
-    def process_option(self):
-        pass
 
 
 def enter_doggo():
