@@ -13,13 +13,14 @@ class Dog:
         self._breed = breed
 
         self.is_hungry = False
+        self.requires_potty = False
         self.is_tired = False
 
         self.eat_timer = Timer()
         self.eat_timer.start()
 
-        self.walk_timer = Timer()
-        self.walk_timer.start()
+        self.potty_timer = Timer()
+        self.potty_timer.start()
 
         self.sleep_timer = Timer()
         self.sleep_timer.start()
@@ -72,6 +73,22 @@ class Dog:
             print(f"\n{self.name} is not hungry")
 
     
+    def potty(self):
+        if debug: print("called potty()")
+
+        if self.potty_timer.elapsed_time() >= 12:
+            self.requires_potty = True
+            print("\npotty potty potty")
+
+            time.sleep(1)
+            print(f"{self.name} is done pottying")
+            
+            self.potty_timer.stop()
+            self.potty_timer.start()
+
+        else:
+            print(f"\n{self.name} does not need to potty")
+
     def walk(self):
         if debug: print("called walk()")
 

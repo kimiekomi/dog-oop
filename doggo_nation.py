@@ -144,7 +144,7 @@ class Doggo_Nation():
     def list_activities(self, dog_name):
         if debug: print("called list_activities()")
 
-        self.actions = ["get dog's name", f"change {dog_name}'s name", f"get {dog_name}'s age", f"get {dog_name}'s breed", f"feed {dog_name}", f"walk {dog_name}", f"put {dog_name} to bed"]
+        self.actions = ["get dog's name", f"change {dog_name}'s name", f"get {dog_name}'s age", f"get {dog_name}'s breed", f"feed {dog_name}", f"walk {dog_name}", f"let {dog_name} potty", f"put {dog_name} to bed"]
 
         print(f"\nBelow is a list of activities you can do with {dog_name}:\n")
 
@@ -205,6 +205,10 @@ class Doggo_Nation():
             self.new_dog.walk()
 
         if activity_number == 6:
+            print(f"\nLet's take {self.new_dog.name} to potty!")
+            self.new_dog.potty()
+
+        if activity_number == 7:
             print(f"\nLet's put {self.new_dog.name} down for a nap!")
             self.new_dog.sleep()
 
