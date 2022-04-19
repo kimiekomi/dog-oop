@@ -26,6 +26,9 @@ class Doggo_Nation():
             self.dog_age = input("Enter a dog age (2): ") or 2
             self.dog_breed = str(input("Enter a dog breed (Malamute): ")) or "Malamute"
 
+            self.dog_name = self.dog_name[0].upper() + self.dog_name[1:].lower()
+            self.dog_breed = self.dog_breed[0].upper() + self.dog_breed[1:].lower()
+
             self.entry = [self.dog_name, self.dog_age, self.dog_breed]
 
             if self.entry in self.dog_entries:
@@ -46,6 +49,7 @@ class Doggo_Nation():
         
         # select dog to interact with
         if len(self.dog_entries) > 1:
+            self.list_dogs(self.dog_entries)
             self.active_dog = self.select_dog(self.dog_entries)
 
         else:
@@ -74,38 +78,50 @@ class Doggo_Nation():
     def list_dogs(self, dog_list):
         if debug: print("called list_dogs()")
 
-        for i, dog in enumerate(dog_list):
+        print("\nDog List:")
+
+        for dog in dog_list:
             dog_name = dog[0]
             dog_age = dog[1]
             dog_breed = dog[2]
             
-            print(f"({i+1}) {dog_name}: {dog_age} year old {dog_breed}")
+            print(f"{dog_name}: {dog_age} year old {dog_breed}")
 
 
     def select_dog(self, dog_list):
         if debug: print("called select_dog()")
 
-        print("\nDog List:")
-        self.list_dogs(dog_list)
+        if trace: print(f"Dog List: {dog_list}")
 
         while True:
-            try:
-                self.selected_dog = int(input("\nEnter the dog number you wish to interact with: "))
-        
-            except:
-                print(">>> ERROR: Enter a valid number")
-                continue
+            input_name = input("\nEnter the dog's name you would like to interact with: ")
 
+            input_name = input_name[0].upper() + input_name[1:].lower()
+
+            count = 0
+            index = None
+
+            for dog in dog_list:
+
+                if input_name in dog:
+                    count += 1
+                    index = dog_list.index(dog)
+
+            if count == 0:    
+                print("Dog not found")
+                continue
+            
             break
 
-        dog_name = dog_list[self.selected_dog-1][0]  
-        dog_age = dog_list[self.selected_dog-1][1] 
-        dog_breed = dog_list[self.selected_dog-1][2] 
-        
+        selected_dog = dog_list[index]
+
+        dog_name = selected_dog[0]
+        dog_age = selected_dog[1]
+        dog_breed = selected_dog[2]
+
         print(f"\n>>> You selected {dog_name} the {dog_age} year old {dog_breed}!")
+        return selected_dog
         
-        return dog_list[self.selected_dog-1]
-                
 
     def list_activities(self, dog_name):
         if debug: print("called list_activities()")
