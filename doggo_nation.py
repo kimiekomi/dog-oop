@@ -65,14 +65,6 @@ class Doggo_Nation():
             # os.system("clear")
 
 
-        # remove will_continue
-        # change menu input...don't accept numbers...split input use contain()
-        # add feature to switch dogs or create new dog(s)
-        # might need separate create_dog() and interact_dog() 
-        # add option to potty, treat
-        # remove timer from walk
-
-
     def list_dogs(self, dog_list):
         if debug: print("called list_dogs()")
 
@@ -112,7 +104,7 @@ class Doggo_Nation():
     def list_activities(self, dog_name):
         if debug: print("called list_activities()")
 
-        self.activities = ["create a new dog", "switch to a different dog", "", "get dog's name", f"change {dog_name}'s name", f"get {dog_name}'s age", f"get {dog_name}'s breed", f"feed {dog_name}", f"walk {dog_name}", f"let {dog_name} potty", f"give {dog_name} a treat", f"put {dog_name} to bed", "", "exit program"]
+        self.activities = [f"Change {dog_name}'s name", f"Get {dog_name}'s age", f"Get {dog_name}'s breed", f"Feed {dog_name}", f"Walk {dog_name}", f"Let {dog_name} potty", f"Give {dog_name} a treat", f"Put {dog_name} to bed\n", "Create new dog", "Switch dogs", "Exit program"]
 
         print(f"\nBelow is a list of activities you can do with {dog_name}:\n")
 
@@ -131,7 +123,7 @@ class Doggo_Nation():
                 print(">>> ERROR: Enter a valid number")
                 continue
 
-            if self.activity_number > len(self.actions) or self.activity_number <= 0:
+            if self.activity_number > len(self.activities) or self.activity_number <= 0:
                 print(">>> ERROR: That number is not listed")
                 continue
             
@@ -145,10 +137,13 @@ class Doggo_Nation():
 
         # if trace: print(f"Activity Number is {activity_number}")
 
-        if activity_number == 0: 
-            print(f"\n>>> Your dog's name is {self.new_dog.name}.")
-
         if activity_number == 1: 
+            print(f"\nFeature not implemented yet...")
+        
+        if activity_number == 2: 
+            print(f"\nFeature not implemented yet...")
+
+        if activity_number == 3: 
             new_name = input(f"\nYour dog's current name is {self.new_dog.name}.\nEnter your dog's new name: ")
 
             new_name = new_name[0].upper() + new_name[1:]
@@ -158,36 +153,34 @@ class Doggo_Nation():
 
             print(f"\n>>> Your dog's name is now {self.new_dog.name}.")
 
-        if activity_number == 2: 
+        if activity_number == 4: 
             print(f"\n>>> Your dog is {self.new_dog.age} year(s) old.")
 
-        if activity_number == 3: 
+        if activity_number == 5: 
             print(f"\n>>> Your dog is a(n) {self.new_dog.breed}.")
 
-        if activity_number == 4: 
+        if activity_number == 6: 
             print(f"\nLet's feed {self.new_dog.name} some kibbles!")
             self.new_dog.eat()
 
-        if activity_number == 5:
+        if activity_number == 7:
             print(f"\nLet's take {self.new_dog.name} for a walk!")
             self.new_dog.walk()
 
-        if activity_number == 6:
+        if activity_number == 8:
             print(f"\nLet's take {self.new_dog.name} to potty!")
             self.new_dog.potty()
 
-        if activity_number == 7:
+        if activity_number == 9:
             print(f"\nLet's give {self.new_dog.name} a treat!")
             self.new_dog.treat()
 
-        if activity_number == 8:
+        if activity_number == 10:
             print(f"\nLet's put {self.new_dog.name} down for a nap!")
             self.new_dog.sleep()
 
-
-        if option_number == 2:
-                    print("\nGoodbye...See you next time!\n")
-                    break
+        if activity_number == len(self.activities):
+            print("\nGoodbye...See you next time!\n")
 
 
     def select_option(self):
