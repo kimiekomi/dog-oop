@@ -16,33 +16,9 @@ class Doggo_Nation():
     def start_doggo(self):
         if debug: print("called start_doggo()")
         
-        self.dog_entries = []
-
         # create custom dog (instantiate Dog class)
-        while True:
-            print("\n*** Let's Create Your Custom Dog! ***")
-
-            self.dog_name = str(input("\nEnter a dog name (Lima): ")) or "Lima"
-            self.dog_age = input("Enter a dog age (2): ") or 2
-            self.dog_breed = str(input("Enter a dog breed (Malamute): ")) or "Malamute"
-
-            self.dog_name = self.dog_name[0].upper() + self.dog_name[1:].lower()
-            self.dog_breed = self.dog_breed[0].upper() + self.dog_breed[1:].lower()
-
-            self.entry = [self.dog_name, self.dog_age, self.dog_breed]
-
-            if self.entry in self.dog_entries:
-                print("\n>>> ERROR: Dog already exists...create a different dog")
-                continue
-            
-            self.dog_entries.append(self.entry)
-            self.new_dog = Dog(self.dog_name, self.dog_age, self.dog_breed)
-            
-            self.create_another_dog = input("\nCreate another dog? ").lower()
-
-            if self.create_another_dog != "y":
-                break
-
+        self.create_dog()
+        
         os.system("clear")
 
         print("\n*** Let's Interact with Your Dog! ***")
@@ -67,12 +43,38 @@ class Doggo_Nation():
             # process dog activity selections 
             next_option = self.process_activity(self.selected_activity)
 
-            # if trace: print(f"Next Option: {next_option}")
-
             if next_option == 0:
                 break
 
-            # os.system("clear")
+    
+    def create_dog(self):
+        if debug: print("called create_dog()")
+
+        self.dog_entries = []
+
+        while True:
+            print("\n*** Let's Create Your Custom Dog! ***")
+
+            self.dog_name = str(input("\nEnter a dog name (Lima): ")) or "Lima"
+            self.dog_age = input("Enter a dog age (2): ") or 2
+            self.dog_breed = str(input("Enter a dog breed (Malamute): ")) or "Malamute"
+
+            self.dog_name = self.dog_name[0].upper() + self.dog_name[1:].lower()
+            self.dog_breed = self.dog_breed[0].upper() + self.dog_breed[1:].lower()
+
+            self.entry = [self.dog_name, self.dog_age, self.dog_breed]
+
+            if self.entry in self.dog_entries:
+                print("\n>>> ERROR: Dog already exists...create a different dog")
+                continue
+            
+            self.dog_entries.append(self.entry)
+            self.new_dog = Dog(self.dog_name, self.dog_age, self.dog_breed)
+            
+            self.create_another_dog = input("\nCreate another dog? ").lower()
+
+            if self.create_another_dog != "y":
+                break
 
 
     def list_dogs(self, dog_list):
