@@ -21,21 +21,21 @@ class Doggo_Nation():
         
         os.system("clear")
 
-        print("\n*** Let's Interact with Your Dog! ***")
-        
-        # select dog to interact with
-        if len(self.dog_entries) > 1:
-            self.list_dogs(self.dog_entries)
-            self.active_dog = self.select_dog(self.dog_entries)
-
-        else:
-            self.active_dog = self.entry
-        
-        self.active_dog_name = self.active_dog[0]
-
-        self.list_activities(self.active_dog_name)
-
         while True:
+
+            # select dog to interact with
+            if len(self.dog_entries) > 1:
+                self.list_dogs(self.dog_entries)
+                self.active_dog = self.select_dog(self.dog_entries)
+
+            else:
+                self.active_dog = self.entry
+            
+            self.active_dog_name = self.active_dog[0]
+
+            self.list_activities(self.active_dog_name)
+
+            print("\n*** Let's Interact with Your Dog! ***")
 
             # select dog activity
             self.selected_activity = self.select_activity(self.activities)
@@ -45,6 +45,13 @@ class Doggo_Nation():
 
             if next_option == 0:
                 break
+
+            if next_option == 1:
+                continue
+
+            if next_option == 2:
+                self.create_dog()
+                continue
 
     
     def create_dog(self):
@@ -189,9 +196,11 @@ class Doggo_Nation():
 
         elif "new" in split_activity: 
             print(f"\nFeature not implemented yet...")
+            return 2
         
         elif "switch" in split_activity: 
             print(f"\nFeature not implemented yet...")
+            return 1
 
         elif "exit" in split_activity: 
             print("\nGoodbye...See you next time!\n")

@@ -14,7 +14,7 @@ menu when user type “h”
 
 To Do:
 - add feature to switch dogs or create new dog(s)
-- might need separate create_dog() and interact_dog() 
+- need separate interact_dog() 
 - need display_menu(list)...maybe
 
 
