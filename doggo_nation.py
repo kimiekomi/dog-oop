@@ -5,7 +5,6 @@ from dog import Dog
 import time
 import os
 
-
 debug = False
 trace = True
 
@@ -89,6 +88,7 @@ class Doggo_Nation():
             os.system("clear")
 
         # add feature to switch dogs or create new dog(s)
+        # might need separate create_dog() and interact_dog() 
 
 
     def list_dogs(self, dog_list):
@@ -204,6 +204,14 @@ class Doggo_Nation():
 
         for i, self.option in enumerate(self.options):
             print(f"({i+1}) {self.option}")
+
+    
+    def select_option(self):
+        pass
+
+
+    def process_option(self):
+        pass
 
 
 def enter_doggo():
