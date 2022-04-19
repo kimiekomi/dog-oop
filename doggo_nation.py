@@ -81,6 +81,14 @@ class Doggo_Nation():
 
                     break
 
+                if option_number == 0:
+                    print("\nFeature not implemented yet\n")
+                    break
+
+                if option_number == 1:
+                    print("\nFeature not implemented yet\n")
+                    break
+
                 if option_number == 2:
                     print("\nGoodbye...See you next time!\n")
                     break
