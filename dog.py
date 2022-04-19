@@ -89,6 +89,7 @@ class Dog:
         else:
             print(f"\n{self.name} does not need to potty")
 
+
     def walk(self):
         if debug: print("called walk()")
 
@@ -97,9 +98,6 @@ class Dog:
         time.sleep(1)
         print(f"{self.name} is done walking")
         
-        self.walk_timer.stop()
-        self.walk_timer.start()
-
 
     def sleep(self):
         if debug: print("called sleep()")
@@ -116,6 +114,15 @@ class Dog:
 
         else:
             print(f"\n{self.name} is not tired")
+
+
+    def treat(self):
+        if debug: print("called treat()")
+
+        print("\nyum yum yum")
+        
+        time.sleep(1)
+        print(f"{self.name} ate the yummy treat!")
 
 
 if __name__ == "__main__":
