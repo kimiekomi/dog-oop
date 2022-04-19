@@ -53,14 +53,20 @@ class Doggo_Nation():
         
         self.active_dog_name = self.active_dog[0]
 
+        self.list_activities(self.active_dog_name)
+
         while True:
-            self.list_activities(self.active_dog_name)
 
             # select dog activity
-            self.selected_activity = self.select_activity()
+            self.selected_activity = self.select_activity(self.activities)
 
             # process dog activity selections 
-            self.process_activity(self.selected_activity)
+            next_option = self.process_activity(self.selected_activity)
+
+            # if trace: print(f"Next Option: {next_option}")
+
+            if next_option == 0:
+                break
 
             # os.system("clear")
 
@@ -112,38 +118,22 @@ class Doggo_Nation():
             print(f"- {activity}")
 
 
-    def select_activity(self):
+    def select_activity(self, activity_list):
         if debug: print("called select_activity()")
 
-        while True:
-            try:
-                self.activity_number = int(input(f"\nEnter an activity number: "))
+        # if trace: print(f"Activity List: {activity_list}")
 
-            except:
-                print(">>> ERROR: Enter a valid number")
-                continue
+        activity = input(f"\nWhat would you like to do? ").lower()
 
-            if self.activity_number > len(self.activities) or self.activity_number <= 0:
-                print(">>> ERROR: That number is not listed")
-                continue
-            
-            break
+        activity = activity.split()
 
-        return self.activity_number-1
+        return activity
 
 
-    def process_activity(self, activity_number):
+    def process_activity(self, split_activity):
         if debug: print("called process_activity()")
 
-        # if trace: print(f"Activity Number is {activity_number}")
-
-        if activity_number == 1: 
-            print(f"\nFeature not implemented yet...")
-        
-        if activity_number == 2: 
-            print(f"\nFeature not implemented yet...")
-
-        if activity_number == 3: 
+        if "name" in split_activity: 
             new_name = input(f"\nYour dog's current name is {self.new_dog.name}.\nEnter your dog's new name: ")
 
             new_name = new_name[0].upper() + new_name[1:]
@@ -153,34 +143,44 @@ class Doggo_Nation():
 
             print(f"\n>>> Your dog's name is now {self.new_dog.name}.")
 
-        if activity_number == 4: 
+        elif "age" in split_activity: 
             print(f"\n>>> Your dog is {self.new_dog.age} year(s) old.")
 
-        if activity_number == 5: 
+        elif "breed" in split_activity: 
             print(f"\n>>> Your dog is a(n) {self.new_dog.breed}.")
 
-        if activity_number == 6: 
+        elif "feed" in split_activity: 
             print(f"\nLet's feed {self.new_dog.name} some kibbles!")
             self.new_dog.eat()
 
-        if activity_number == 7:
+        elif "walk" in split_activity: 
             print(f"\nLet's take {self.new_dog.name} for a walk!")
             self.new_dog.walk()
 
-        if activity_number == 8:
+        elif "potty" in split_activity: 
             print(f"\nLet's take {self.new_dog.name} to potty!")
             self.new_dog.potty()
 
-        if activity_number == 9:
+        elif "treat" in split_activity: 
             print(f"\nLet's give {self.new_dog.name} a treat!")
             self.new_dog.treat()
 
-        if activity_number == 10:
+        elif "sleep" in split_activity: 
             print(f"\nLet's put {self.new_dog.name} down for a nap!")
             self.new_dog.sleep()
 
-        if activity_number == len(self.activities):
+        elif "new" in split_activity: 
+            print(f"\nFeature not implemented yet...")
+        
+        elif "switch" in split_activity: 
+            print(f"\nFeature not implemented yet...")
+
+        elif "exit" in split_activity: 
             print("\nGoodbye...See you next time!\n")
+            return 0
+
+        else: 
+            print(">>> ERROR: That option is not available")
 
 
     def select_option(self):

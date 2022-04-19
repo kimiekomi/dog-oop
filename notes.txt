@@ -13,11 +13,11 @@ maybe log activities in .txt file
 menu when user type “h”
 
 To Do:
-- remove will_continue
 - change menu input...don't accept numbers...split input use contain()
 - add feature to switch dogs or create new dog(s)
 - might need separate create_dog() and interact_dog() 
 - need display_menu(list)...maybe
+- fix while loop for start_doggo()
 
 Dog
 - name
