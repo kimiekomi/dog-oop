@@ -1,9 +1,9 @@
 
 OOP - 
 
-Create a person object. what actions or attributes a person can have/do
+Create a dog object...what actions or attributes can a dog have/do
 
-interactive…create multiple people
+interactive…create multiple dogs
 
 user needs to set/change gender/name…need to ask for name/gender
 
@@ -12,39 +12,13 @@ maybe log activities in .txt file
 
 menu when user type “h”
 
-Class Person
-
-methods: 
-- eat
-- sleep
-- greet
-- shower
-
-- get gender
-- set gender
-
-- get name
-- set name
-
-- get age
-- set age
-
-- get location
-- set location
-
-- get job
-- set job
-
-
-attributes: 
-- gender
-- name
-- age 
-- location
-- job
-- is clean
-- is hungry
-- is sleepy
+To Do:
+- remove will_continue
+- change menu input...don't accept numbers...split input use contain()
+- add feature to switch dogs or create new dog(s)
+- might need separate create_dog() and interact_dog() 
+- add option to potty w/ timer, treat
+- remove timer from walk
 
 Dog
 - name
@@ -54,3 +28,4 @@ Dog
 - eat (every 18 sec)
 - sleep (every 36 sec)
 - walk (every 12 sec)
+

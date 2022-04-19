@@ -10,7 +10,7 @@ trace = True
 
 class Doggo_Nation():
     def __init__(self):
-        print("\nWelcome to Doggo Nation! A place where you can create and interact with virtual dogs. Let's start by creating your custom dog!")
+        print("\nWelcome to Doggo Nation! A place where you can create and interact with virtual dogs.")
 
 
     def start_doggo(self):
@@ -20,6 +20,8 @@ class Doggo_Nation():
 
         # create custom dog (instantiate Dog class)
         while True:
+            print("\n*** Let's Create Your Custom Dog! ***")
+
             self.dog_name = str(input("\nEnter a dog name (Lima): ")) or "Lima"
             self.dog_age = input("Enter a dog age (2): ") or 2
             self.dog_breed = str(input("Enter a dog breed (Malamute): ")) or "Malamute"
@@ -95,8 +97,12 @@ class Doggo_Nation():
 
             os.system("clear")
 
+        # remove will_continue
+        # change menu input...don't accept numbers...split input use contain()
         # add feature to switch dogs or create new dog(s)
         # might need separate create_dog() and interact_dog() 
+        # add option to potty, treat
+        # remove timer from walk
 
 
     def list_dogs(self, dog_list):
