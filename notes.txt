@@ -14,9 +14,6 @@ menu when user type “h”
 
 To Do:
 - when call create_dog() again, dog_entries is overwritten
-- switch dog not switching in process_activity()...only uses LAST instantiated object
-- need to append OBJECT to list
-    - change all process_activity() if/elif statements
 
 Dog
 - name
