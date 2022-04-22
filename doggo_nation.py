@@ -75,7 +75,7 @@ class Doggo_Nation():
                 if len(self.dog_entries) > 1:
                     self.active_dog = self.activate_dog()
 
-                print("There is only one dog available...")
+                print("\n>>> Only one dog available...to switch dogs, create a new dog")
 
             elif next_option == "new":
                 self.create_dog()
@@ -85,7 +85,7 @@ class Doggo_Nation():
                 self.list_activities(self.active_dog.name)
 
             else:
-                print(">>> ERROR: unavailable option")
+                print("\n>>> ERROR: unavailable option")
 
 
     def create_dog(self):
@@ -166,9 +166,8 @@ class Doggo_Nation():
     def activate_dog(self):
         if debug: print("called activate_dog()")
 
-        print("\n*** Let's Select A Dog! ***")
-
         if len(self.dog_entries) > 1:
+            print("\n*** Let's Select A Dog! ***")
             self.list_dogs(self.dog_entries)
             activated_dog = self.select_dog(self.dog_entries)
 
@@ -207,13 +206,13 @@ class Doggo_Nation():
         if "name" in split_input: 
             return "name"
             
-        if "age" in split_input: 
+        if "age" in split_input or "old" in split_input: 
             return "age"
 
-        if "breed" in split_input: 
+        if "breed" in split_input or "king" in split_input: 
             return "breed"
 
-        if "feed" in split_input: 
+        if "feed" in split_input or "eat" in split_input: 
             return "feed"
             
         if "walk" in split_input: 
@@ -222,19 +221,19 @@ class Doggo_Nation():
         if "potty" in split_input: 
             return "potty"
             
-        if "treat" in split_input: 
+        if "treat" in split_input or "snack" in split_input: 
             return "treat"
             
-        if "sleep" in split_input: 
+        if "sleep" in split_input or "nap" in split_input: 
             return "sleep"
 
         if "exit" in split_input: 
             return "exit"
             
-        if "switch" in split_input: 
+        if "switch" in split_input or "change" in split_input or "interact" in split_input or "different" in split_input or "another" in split_input: 
             return "switch"
 
-        if "new" in split_input: 
+        if "new" in split_input or "create" in split_input or "build" in split_input or "make" in split_input: 
             return "new"
         
         if "m" in split_input:
