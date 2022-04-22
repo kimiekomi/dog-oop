@@ -13,7 +13,7 @@ maybe log activities in .txt file
 menu when user type “h”
 
 To Do:
-- when call create_dog() again, dog_entries is overwritten
+-
 
 Dog
 - name
