@@ -12,6 +12,8 @@ class Doggo_Nation():
     def __init__(self):
         print("\nWelcome to Doggo Nation! A place where you can create and interact with virtual dogs.\n")
 
+        self.dog_entries = []
+
 
     def start_doggo(self):
         if debug: print("called start_doggo()")
@@ -20,17 +22,14 @@ class Doggo_Nation():
         self.create_dog()
         
         os.system("clear")
-
+        # select dog
         self.active_dog = self.activate_dog()
 
-        while True:
-            # if trace: print(f"Active Dog: {self.active_dog}")
+        print("\n*** Let's Interact with Your Dog! ***")
 
-            print("\n*** Let's Interact with Your Dog! ***")
-            
-            # select dog activity
+        while True:
+            # select and process activity
             selected_activity = self.input_activity()
-            # process dog activity selections 
             next_option = self.process_input(selected_activity)
 
             if next_option == "exit":
@@ -91,8 +90,6 @@ class Doggo_Nation():
 
     def create_dog(self):
         if debug: print("called create_dog()")
-
-        self.dog_entries = []
 
         while True:
             print("\n*** Let's Create Your Custom Dog! ***")
