@@ -15,8 +15,8 @@ class Doggo_Nation():
         self.dog_entries = []
 
 
-    def start_doggo(self):
-        if debug: print("called start_doggo()")
+    def enter_doggo(self):
+        if debug: print("called enter_doggo()")
         
         # create custom dog (instantiate Dog class)
         self.create_dog()
@@ -37,7 +37,7 @@ class Doggo_Nation():
                 break
 
             if next_option == "name":
-                new_name = input(f"\nYour dog's current name is {self.active_dog.name}.\nEnter your dog's new name: ")
+                new_name = input(f"\nYour dog's current name is {self.active_dog.name}.\nEnter your dog's new name: ").lower()
 
                 new_name = new_name[0].upper() + new_name[1:]
 
@@ -52,7 +52,7 @@ class Doggo_Nation():
                 print(f"\n>>> Your dog is a(n) {self.active_dog.breed}.")
 
             elif next_option == "feed":
-                print(f"\nLet's feed {self.active_dog.name} some kibbles!")
+                print(f"\n>>> Let's feed {self.active_dog.name} some kibbles!")
                 self.active_dog.eat()
 
             elif next_option == "walk":
@@ -242,12 +242,12 @@ class Doggo_Nation():
         return
 
 
-def enter_doggo():
+def main():
     doggo = Doggo_Nation()
 
-    doggo.start_doggo()
+    doggo.enter_doggo()
 
 
 if __name__ == "__main__":
-    enter_doggo()
+    main()
 

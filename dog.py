@@ -61,16 +61,16 @@ class Dog:
 
         if self.eat_timer.elapsed_time() >= 5:
             self.is_hungry = True
-            print("\nmunch munch munch")
+            print("\n>>> munch munch munch")
             
             time.sleep(1)
-            print(f"{self.name} is done eating")
+            print(f">>> {self.name} is done eating")
             
             self.eat_timer.stop()
             self.eat_timer.start()
 
         else:
-            print(f"\n{self.name} is not hungry")
+            print(f"\n>>> {self.name} is not hungry")
 
     
     def potty(self):
@@ -78,25 +78,25 @@ class Dog:
 
         if self.potty_timer.elapsed_time() >= 12:
             self.requires_potty = True
-            print("\npotty potty potty")
+            print("\n>>> potty potty potty")
 
             time.sleep(1)
-            print(f"{self.name} is done pottying")
+            print(f">>> {self.name} is done pottying")
             
             self.potty_timer.stop()
             self.potty_timer.start()
 
         else:
-            print(f"\n{self.name} does not need to potty")
+            print(f"\n>>> {self.name} does not need to potty")
 
 
     def walk(self):
         if debug: print("called walk()")
 
-        print("\ntrot trot trot")
+        print("\n>>> trot trot trot")
         
         time.sleep(1)
-        print(f"{self.name} is done walking")
+        print(f">>> {self.name} is done walking")
         
 
     def sleep(self):
@@ -104,25 +104,25 @@ class Dog:
 
         if self.sleep_timer.elapsed_time() >= 36:
             self.is_tired = True
-            print("\nzzz zzz zzz")
+            print("\n>>> zzz zzz zzz")
 
             time.sleep(1)
-            print(f"{self.name} is done sleeping")
+            print(f">>> {self.name} is done sleeping")
             
             self.sleep_timer.stop()
             self.sleep_timer.start()
 
         else:
-            print(f"\n{self.name} is not tired")
+            print(f"\n>>> {self.name} is not tired")
 
 
     def treat(self):
         if debug: print("called treat()")
 
-        print("\nyum yum yum")
+        print("\n>>> yum yum yum")
         
         time.sleep(1)
-        print(f"{self.name} ate the yummy treat!")
+        print(f">>> {self.name} ate the yummy treat!")
 
 
 if __name__ == "__main__":
