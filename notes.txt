@@ -16,8 +16,6 @@ To Do:
 - when call create_dog() again, dog_entries is overwritten
 - switch dog not switching in process_activity()...only uses LAST instantiated object
 - need to append OBJECT to list
-    - change create_dog() line 67, 73, 74
-    - change list_dogs() line 88-92
     - change activate_dog()  line 102, 105
     - change select_dog() for loop, line 135-141
     - change all process_activity() if/elif statements

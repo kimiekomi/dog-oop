@@ -84,26 +84,11 @@ class Doggo_Nation():
         print("\nDog List:")
 
         for dog in dog_list:
-            dog_name = dog[0]
-            dog_age = dog[1]
-            dog_breed = dog[2]
+            dog_name = dog.name
+            dog_age = dog.age
+            dog_breed = dog.breed
             
             print(f"{dog_name}: {dog_age} year old {dog_breed}")
-
-
-    def activate_dog(self):
-        if debug: print("called activate_dog()")
-
-        print("\n*** Let's Select A Dog! ***")
-
-        if len(self.dog_entries) > 1:
-            self.list_dogs(self.dog_entries)
-            activated_dog = self.select_dog(self.dog_entries)
-
-        else:
-            activated_dog = self.entry
-
-        return activated_dog
 
 
     def select_dog(self, dog_list):
@@ -121,7 +106,7 @@ class Doggo_Nation():
 
             for dog in dog_list:
 
-                if input_name in dog:
+                if input_name == dog.name:
                     count += 1
                     index = dog_list.index(dog)
 
@@ -133,12 +118,27 @@ class Doggo_Nation():
 
         selected_dog = dog_list[index]
 
-        dog_name = selected_dog[0]
-        dog_age = selected_dog[1]
-        dog_breed = selected_dog[2]
+        dog_name = selected_dog.name
+        dog_age = selected_dog.age
+        dog_breed = selected_dog.breed
 
         print(f"\n>>> You selected {dog_name} the {dog_age} year old {dog_breed}!")
         return selected_dog
+
+
+    def activate_dog(self):
+        if debug: print("called activate_dog()")
+
+        print("\n*** Let's Select A Dog! ***")
+
+        if len(self.dog_entries) > 1:
+            self.list_dogs(self.dog_entries)
+            activated_dog = self.select_dog(self.dog_entries)
+
+        else:
+            activated_dog = self.entry
+
+        return activated_dog
         
 
     def list_activities(self, dog_name):
