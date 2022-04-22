@@ -33,7 +33,7 @@ class Doggo_Nation():
             next_option = self.process_input(selected_activity)
 
             if next_option == "exit":
-                print("\nGoodbye...See you next time!\n")
+                print("\n>>> Goodbye...See you next time!\n")
                 break
 
             if next_option == "name":
@@ -43,7 +43,7 @@ class Doggo_Nation():
 
                 self.active_dog.name = new_name
 
-                print(f"\n>>> Your dog's name is now {self.active_dog.name}.")
+                print(f"\n>>> Your dog's new name is {self.active_dog.name}.")
 
             elif next_option == "age":
                 print(f"\n>>> {self.active_dog.name} is {self.active_dog.age} year(s) old.")
@@ -52,7 +52,7 @@ class Doggo_Nation():
                 print(f"\n>>> {self.active_dog.name} is a(n) {self.active_dog.breed}.")
 
             elif next_option == "feed":
-                print(f"\n>>> Let's feed {self.active_dog.name} some kibbles!")
+                print(f"\nLet's feed {self.active_dog.name} some kibbles!")
                 self.active_dog.eat()
 
             elif next_option == "walk":
@@ -82,6 +82,7 @@ class Doggo_Nation():
                 self.active_dog = self.activate_dog()
 
             elif next_option == "m":
+                os.system("clear")
                 self.list_activities(self.active_dog.name)
 
             else:
@@ -224,7 +225,7 @@ class Doggo_Nation():
         if "treat" in split_input or "snack" in split_input: 
             return "treat"
             
-        if "sleep" in split_input or "nap" in split_input: 
+        if "sleep" in split_input or "nap" in split_input or "bed" in split_input or "rest" in split_input: 
             return "sleep"
 
         if "exit" in split_input: 
