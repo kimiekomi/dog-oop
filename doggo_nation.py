@@ -25,7 +25,7 @@ class Doggo_Nation():
         # select dog
         self.active_dog = self.activate_dog()
 
-        print("\n*** Let's Interact with Your Dog! ***")
+        print("*** Let's Interact with Your Dog! ***")
 
         while True:
             # select and process activity
