@@ -167,41 +167,42 @@ class Doggo_Nation():
     def process_activity(self, split_activity):
         if debug: print("called process_activity()")
 
+        active_dog = self.activate_dog()
+
         if "name" in split_activity: 
-            new_name = input(f"\nYour dog's current name is {self.new_dog.name}.\nEnter your dog's new name: ")
+            new_name = input(f"\nYour dog's current name is {active_dog.name}.\nEnter your dog's new name: ")
 
             new_name = new_name[0].upper() + new_name[1:]
 
-            self.new_dog.name = new_name
-            self.active_dog_name = new_name
+            active_dog.name = new_name
 
-            print(f"\n>>> Your dog's name is now {self.new_dog.name}.")
+            print(f"\n>>> Your dog's name is now {active_dog.name}.")
 
         elif "age" in split_activity: 
-            print(f"\n>>> Your dog is {self.new_dog.age} year(s) old.")
+            print(f"\n>>> Your dog is {active_dog.age} year(s) old.")
 
         elif "breed" in split_activity: 
-            print(f"\n>>> Your dog is a(n) {self.new_dog.breed}.")
+            print(f"\n>>> Your dog is a(n) {active_dog.breed}.")
 
         elif "feed" in split_activity: 
-            print(f"\nLet's feed {self.new_dog.name} some kibbles!")
-            self.new_dog.eat()
+            print(f"\nLet's feed {active_dog.name} some kibbles!")
+            active_dog.eat()
 
         elif "walk" in split_activity: 
-            print(f"\nLet's take {self.new_dog.name} for a walk!")
-            self.new_dog.walk()
+            print(f"\nLet's take {active_dog.name} for a walk!")
+            active_dog.walk()
 
         elif "potty" in split_activity: 
-            print(f"\nLet's take {self.new_dog.name} to potty!")
-            self.new_dog.potty()
+            print(f"\nLet's take {active_dog.name} to potty!")
+            active_dog.potty()
 
         elif "treat" in split_activity: 
-            print(f"\nLet's give {self.new_dog.name} a treat!")
-            self.new_dog.treat()
+            print(f"\nLet's give {active_dog.name} a treat!")
+            active_dog.treat()
 
         elif "sleep" in split_activity: 
-            print(f"\nLet's put {self.new_dog.name} down for a nap!")
-            self.new_dog.sleep()
+            print(f"\nLet's put {active_dog.name} down for a nap!")
+            active_dog.sleep()
 
         elif "new" in split_activity: 
             return 2
@@ -214,7 +215,7 @@ class Doggo_Nation():
             return 0
 
         elif "m" in split_activity:
-            self.list_activities(self.active_dog[0])
+            self.list_activities(active_dog.name)
 
         else: 
             print(">>> ERROR: That option is not available")
