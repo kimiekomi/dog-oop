@@ -46,10 +46,10 @@ class Doggo_Nation():
                 print(f"\n>>> Your dog's name is now {self.active_dog.name}.")
 
             elif next_option == "age":
-                print(f"\n>>> Your dog is {self.active_dog.age} year(s) old.")
+                print(f"\n>>> {self.active_dog.name} is {self.active_dog.age} year(s) old.")
 
             elif next_option == "breed":
-                print(f"\n>>> Your dog is a(n) {self.active_dog.breed}.")
+                print(f"\n>>> {self.active_dog.name} is a(n) {self.active_dog.breed}.")
 
             elif next_option == "feed":
                 print(f"\n>>> Let's feed {self.active_dog.name} some kibbles!")
