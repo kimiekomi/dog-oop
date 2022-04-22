@@ -207,45 +207,43 @@ class Doggo_Nation():
     def process_input(self, split_input):
         if debug: print("called process_input()")
 
-
         if "name" in split_input: 
             return "name"
             
-        elif "age" in split_input: 
+        if "age" in split_input: 
             return "age"
 
-        elif "breed" in split_input: 
+        if "breed" in split_input: 
             return "breed"
 
-        elif "feed" in split_input: 
+        if "feed" in split_input: 
             return "feed"
             
-        elif "walk" in split_input: 
+        if "walk" in split_input: 
             return "walk"
             
-        elif "potty" in split_input: 
+        if "potty" in split_input: 
             return "potty"
             
-        elif "treat" in split_input: 
+        if "treat" in split_input: 
             return "treat"
             
-        elif "sleep" in split_input: 
+        if "sleep" in split_input: 
             return "sleep"
 
-        elif "exit" in split_input: 
+        if "exit" in split_input: 
             return "exit"
             
-        elif "switch" in split_input: 
+        if "switch" in split_input: 
             return "switch"
 
-        elif "new" in split_input: 
+        if "new" in split_input: 
             return "new"
         
-        elif "m" in split_input:
+        if "m" in split_input:
             return "m"
 
-        else: 
-            return
+        return
 
 
 def enter_doggo():
