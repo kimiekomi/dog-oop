@@ -64,14 +64,13 @@ class Doggo_Nation():
             self.dog_name = self.dog_name[0].upper() + self.dog_name[1:].lower()
             self.dog_breed = self.dog_breed[0].upper() + self.dog_breed[1:].lower()
 
-            self.entry = [self.dog_name, self.dog_age, self.dog_breed]
+            self.entry = Dog(self.dog_name, self.dog_age, self.dog_breed)
 
             if self.entry in self.dog_entries:
                 print("\n>>> ERROR: Dog already exists...create a different dog")
                 continue
             
             self.dog_entries.append(self.entry)
-            self.new_dog = Dog(self.dog_name, self.dog_age, self.dog_breed)
             
             self.create_another_dog = input("\nCreate another dog? ").lower()
 
