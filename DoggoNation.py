@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 
-from timer import Timer
-from dog import Dog
+from Timer import Timer
+from Dog import Dog
 import time
 import os
 
