@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-from timer import Timer
+from Timer import Timer
 import time
 
 debug = False
