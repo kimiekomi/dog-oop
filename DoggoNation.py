@@ -8,7 +8,7 @@ import os
 debug = False
 trace = True
 
-class Doggo_Nation():
+class DoggoNation():
     def __init__(self):
         print("\nWelcome to Doggo Nation! A place where you can create and interact with virtual dogs.\n")
 
@@ -244,7 +244,7 @@ class Doggo_Nation():
 
 
 def main():
-    doggo = Doggo_Nation()
+    doggo = DoggoNation()
 
     doggo.enter_doggo()
 
