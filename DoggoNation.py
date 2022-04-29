@@ -19,75 +19,85 @@ class DoggoNation():
     def enter_doggo(self):
         if debug: print("called enter_doggo()")
         
-        # create custom dog (instantiate Dog class)
-        self.create_dog()
-        
-        os.system("clear")
-        # select dog
-        self.active_dog = self.activate_dog()
-
-        print("*** Let's Interact with Your Dog! ***")
+        self.list_activities("your dog")
 
         while True:
             # select and process activity
             selected_activity = self.input_activity()
             next_option = self.process_input(selected_activity)
-
+            
             if next_option == constants.EXIT:
                 print("\n>>> Goodbye...See you next time!\n")
                 break
-
-            if next_option == constants.NAME:
-                new_name = input(f"\nYour dog's current name is {self.active_dog.name}.\nEnter your dog's new name: ").lower()
-
-                new_name = new_name[0].upper() + new_name[1:]
-
-                self.active_dog.name = new_name
-
-                print(f"\n>>> Your dog's new name is {self.active_dog.name}.")
-
-            elif next_option == constants.AGE:
-                print(f"\n>>> {self.active_dog.name} is {self.active_dog.age} year(s) old.")
-
-            elif next_option == constants.BREED:
-                print(f"\n>>> {self.active_dog.name} is a(n) {self.active_dog.breed}.")
-
-            elif next_option == constant.FEED:
-                print(f"\nLet's feed {self.active_dog.name} some kibbles!")
-                self.active_dog.eat()
-
-            elif next_option == constants.WALK:
-                print(f"\nLet's take {self.active_dog.name} for a walk!")
-                self.active_dog.walk()
-
-            elif next_option == constant.POTTY:
-                print(f"\nLet's take {self.active_dog.name} to potty!")
-                self.active_dog.potty()
-
-            elif next_option == constants.TREAT:
-                print(f"\nLet's give {self.active_dog.name} a treat!")
-                self.active_dog.treat()
-
-            elif next_option == constants.SLEEP:
-                print(f"\nLet's put {self.active_dog.name} down for a nap!")
-                self.active_dog.sleep()
-
-            elif next_option == constants.SWITCH:
-                if len(self.dog_entries) > 1:
-                    self.active_dog = self.activate_dog()
-
-                print("\n>>> Only one dog available...to switch dogs, create a new dog")
-
-            elif next_option == constants.NEW:
-                self.create_dog()
-                self.active_dog = self.activate_dog()
 
             elif next_option == constants.HELP:
                 os.system("clear")
                 self.list_activities(self.active_dog.name)
 
+            elif next_option == constants.CREATE:
+                os.system("clear")
+                # create custom dog (instantiate Dog class)
+                self.create_dog()
+                # select dog
+                self.active_dog = self.activate_dog()
+
             else:
-                print(f"\n>>> ERROR: unavailable option...enter '{constants.HELP}' for help")
+                if len(self.dog_entries) == 0:
+                    print("\n>>> No dogs available...enter 'create' to build a dog")
+                    continue
+
+                if next_option == constants.NAME:
+                    print("\n--- Change Dog Name ---")
+
+                    new_name = input(f"\nYour dog's current name is {self.active_dog.name}.\n\nEnter your dog's new name: ").lower()
+
+                    new_name = new_name[0].upper() + new_name[1:]
+
+                    self.active_dog.name = new_name
+
+                    print(f"\n>>> Your dog's new name is {self.active_dog.name}.")
+
+                elif next_option == constants.AGE:
+                    print("\n--- Get Dog Age ---")
+                    print(f"\n>>> {self.active_dog.name} is {self.active_dog.age} year(s) old.")
+
+                elif next_option == constants.BREED:
+                    if len(self.dog_entries) == 0:
+                        print("\n>>> No dogs available...enter 'create' to build a dog")
+                        continue
+
+                    print("\n--- Get Dog Breed ---")
+
+                    print(f"\n>>> {self.active_dog.name} is a(n) {self.active_dog.breed}.")
+
+                elif next_option == constants.FEED:
+                    print(f"\nLet's feed {self.active_dog.name} some kibbles!")
+                    self.active_dog.eat()
+
+                elif next_option == constants.WALK:
+                    print(f"\nLet's take {self.active_dog.name} for a walk!")
+                    self.active_dog.walk()
+
+                elif next_option == constants.POTTY:
+                    print(f"\nLet's take {self.active_dog.name} to potty!")
+                    self.active_dog.potty()
+
+                elif next_option == constants.TREAT:
+                    print(f"\nLet's give {self.active_dog.name} a treat!")
+                    self.active_dog.treat()
+
+                elif next_option == constants.SLEEP:
+                    print(f"\nLet's put {self.active_dog.name} down for a nap!")
+                    self.active_dog.sleep()
+
+                elif next_option == constants.SWITCH:
+                    if len(self.dog_entries) > 1:
+                        self.active_dog = self.activate_dog()
+
+                    print("\n>>> Only one dog available...to switch dogs, create a new dog")
+
+                else:
+                    print(f"\n>>> ERROR: unavailable option...enter '{constants.HELP}' for help")
 
 
     def create_dog(self):
@@ -105,12 +115,12 @@ class DoggoNation():
 
             self.entry = Dog(self.dog_name, self.dog_age, self.dog_breed)
 
-            if self.entry in self.dog_entries:
-                print("\n>>> ERROR: Dog already exists...create a different dog")
-                continue
-            
-            self.dog_entries.append(self.entry)
-            print(f"\n>>> You created {dog_name} the {dog_age} year old {dog_breed}!")
+            if not self.entry in self.dog_entries:
+                self.dog_entries.append(self.entry)
+                break
+
+            print("\n>>> ERROR: Dog already exists...create a different dog")
+            continue
 
 
     def list_dogs(self, dog_list):
@@ -231,8 +241,8 @@ class DoggoNation():
         if constants.SWITCH in split_input or constants.CHANGE in split_input or constants.INTERACT in split_input or constants.DIFFERENT in split_input or constants.ANOTHER in split_input: 
             return constants.SWITCH
 
-        if constants.NEW in split_input or constants.CREATE in split_input or constants.BUILD in split_input or constants.MAKE in split_input: 
-            return constants.NEW
+        if constants.CREATE in split_input or constants.NEW in split_input or constants.BUILD in split_input or constants.MAKE in split_input: 
+            return constants.CREATE
         
         if constants.HELP in split_input:
             return constants.HELP
