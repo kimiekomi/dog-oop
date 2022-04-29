@@ -2,6 +2,7 @@
 
 from Timer import Timer
 from Dog import Dog
+import constants
 import time
 import os
 
@@ -32,11 +33,11 @@ class DoggoNation():
             selected_activity = self.input_activity()
             next_option = self.process_input(selected_activity)
 
-            if next_option == "exit":
+            if next_option == constants.EXIT:
                 print("\n>>> Goodbye...See you next time!\n")
                 break
 
-            if next_option == "name":
+            if next_option == constants.NAME:
                 new_name = input(f"\nYour dog's current name is {self.active_dog.name}.\nEnter your dog's new name: ").lower()
 
                 new_name = new_name[0].upper() + new_name[1:]
@@ -45,48 +46,48 @@ class DoggoNation():
 
                 print(f"\n>>> Your dog's new name is {self.active_dog.name}.")
 
-            elif next_option == "age":
+            elif next_option == constants.AGE:
                 print(f"\n>>> {self.active_dog.name} is {self.active_dog.age} year(s) old.")
 
-            elif next_option == "breed":
+            elif next_option == constants.BREED:
                 print(f"\n>>> {self.active_dog.name} is a(n) {self.active_dog.breed}.")
 
-            elif next_option == "feed":
+            elif next_option == constant.FEED:
                 print(f"\nLet's feed {self.active_dog.name} some kibbles!")
                 self.active_dog.eat()
 
-            elif next_option == "walk":
+            elif next_option == constants.WALK:
                 print(f"\nLet's take {self.active_dog.name} for a walk!")
                 self.active_dog.walk()
 
-            elif next_option == "potty":
+            elif next_option == constant.POTTY:
                 print(f"\nLet's take {self.active_dog.name} to potty!")
                 self.active_dog.potty()
 
-            elif next_option == "treat":
+            elif next_option == constants.TREAT:
                 print(f"\nLet's give {self.active_dog.name} a treat!")
                 self.active_dog.treat()
 
-            elif next_option == "sleep":
+            elif next_option == constants.SLEEP:
                 print(f"\nLet's put {self.active_dog.name} down for a nap!")
                 self.active_dog.sleep()
 
-            elif next_option == "switch":
+            elif next_option == constants.SWITCH:
                 if len(self.dog_entries) > 1:
                     self.active_dog = self.activate_dog()
 
                 print("\n>>> Only one dog available...to switch dogs, create a new dog")
 
-            elif next_option == "new":
+            elif next_option == constants.NEW:
                 self.create_dog()
                 self.active_dog = self.activate_dog()
 
-            elif next_option == "m":
+            elif next_option == constants.HELP:
                 os.system("clear")
                 self.list_activities(self.active_dog.name)
 
             else:
-                print("\n>>> ERROR: unavailable option")
+                print(f"\n>>> ERROR: unavailable option...enter '{constants.HELP}' for help")
 
 
     def create_dog(self):
@@ -109,11 +110,7 @@ class DoggoNation():
                 continue
             
             self.dog_entries.append(self.entry)
-            
-            self.create_another_dog = input("\nCreate another dog? ").lower()
-
-            if self.create_another_dog != "y":
-                break
+            print(f"\n>>> You created {dog_name} the {dog_age} year old {dog_breed}!")
 
 
     def list_dogs(self, dog_list):
@@ -194,7 +191,7 @@ class DoggoNation():
 
         # if trace: print(f"Activity List: {activity_list}")
 
-        activity = input(f"\nWhat would you like to do (enter 'm' to view full menu)? ").lower()
+        activity = input(f"\nWhat would you like to do (enter '{constants.HELP}' for help)? ").lower()
 
         activity = activity.split()
 
@@ -204,41 +201,41 @@ class DoggoNation():
     def process_input(self, split_input):
         if debug: print("called process_input()")
 
-        if "name" in split_input: 
-            return "name"
+        if constants.NAME in split_input: 
+            return constants.NAME
             
-        if "age" in split_input or "old" in split_input: 
-            return "age"
+        if constants.AGE in split_input or constants.OLD in split_input: 
+            return constants.AGE
 
-        if "breed" in split_input or "king" in split_input: 
-            return "breed"
+        if constants.BREED in split_input or constants.KIND in split_input: 
+            return constants.BREED
 
-        if "feed" in split_input or "eat" in split_input: 
-            return "feed"
+        if constants.FEED in split_input or constants.EAT in split_input: 
+            return constants.FEED
             
-        if "walk" in split_input: 
-            return "walk"
+        if constants.WALK in split_input: 
+            return constants.WALK
             
-        if "potty" in split_input: 
-            return "potty"
+        if constants.POTTY in split_input: 
+            return constants.POTTY
             
-        if "treat" in split_input or "snack" in split_input: 
-            return "treat"
+        if constants.TREAT in split_input or constants.SNACK in split_input: 
+            return constants.TREAT
             
-        if "sleep" in split_input or "nap" in split_input or "bed" in split_input or "rest" in split_input: 
-            return "sleep"
+        if constants.SLEEP in split_input or constants.NAP in split_input or constants.BED in split_input or constants.REST in split_input: 
+            return constants.SLEEP
 
-        if "exit" in split_input: 
-            return "exit"
+        if constants.EXIT in split_input: 
+            return constants.EXIT
             
-        if "switch" in split_input or "change" in split_input or "interact" in split_input or "different" in split_input or "another" in split_input: 
-            return "switch"
+        if constants.SWITCH in split_input or constants.CHANGE in split_input or constants.INTERACT in split_input or constants.DIFFERENT in split_input or constants.ANOTHER in split_input: 
+            return constants.SWITCH
 
-        if "new" in split_input or "create" in split_input or "build" in split_input or "make" in split_input: 
-            return "new"
+        if constants.NEW in split_input or constants.CREATE in split_input or constants.BUILD in split_input or constants.MAKE in split_input: 
+            return constants.NEW
         
-        if "m" in split_input:
-            return "m"
+        if constants.HELP in split_input:
+            return constants.HELP
 
         return
 
