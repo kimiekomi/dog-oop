@@ -30,7 +30,7 @@ class DoggoNation():
                 print("\n>>> Goodbye...See you next time!\n")
                 break
 
-            elif next_option == constants.HELP:
+            if next_option == constants.HELP:
                 os.system("clear")
                 self.list_activities(self.active_dog.name)
 
@@ -115,12 +115,17 @@ class DoggoNation():
 
             self.entry = Dog(self.dog_name, self.dog_age, self.dog_breed)
 
-            if not self.entry in self.dog_entries:
+            already_exist = False
+
+            for dog in self.dog_entries:
+                if dog == self.entry:
+                    already_exist = True
+            
+            if not already_exist:
                 self.dog_entries.append(self.entry)
                 break
 
             print("\n>>> ERROR: Dog already exists...create a different dog")
-            continue
 
 
     def list_dogs(self, dog_list):
