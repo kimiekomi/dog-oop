@@ -3,7 +3,7 @@
 import time
 
 debug = False
-trace = True
+trace = False
 
 class Timer:
     def __init__(self):

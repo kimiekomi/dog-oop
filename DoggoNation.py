@@ -103,9 +103,9 @@ class DoggoNation():
     def create_dog(self):
         if debug: print("called create_dog()")
 
-        while True:
-            print("\n*** Let's Create Your Custom Dog! ***")
+        print("\n*** Let's Create Your Custom Dog! ***")
 
+        while True:
             self.dog_name = str(input("\nEnter a dog name (Lima): ")) or "Lima"
             self.dog_age = input("Enter a dog age (2): ") or 2
             self.dog_breed = str(input("Enter a dog breed (Malamute): ")) or "Malamute"
@@ -115,10 +115,11 @@ class DoggoNation():
             already_exist = False
 
             for dog in self.dog_entries:
-                if dog == self.entry:
+                if dog.name == self.entry.name and dog.age == self.entry.age and dog.breed == self.entry.breed:
                     already_exist = True
             
             if not already_exist:
+                print(f"\n>>> You created a {self.dog_age} year old {self.dog_breed} named {self.dog_name}!")
                 self.dog_entries.append(self.entry)
                 break
 

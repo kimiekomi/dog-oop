@@ -25,7 +25,6 @@ class Dog:
         self.sleep_timer = Timer()
         self.sleep_timer.start()
 
-        print(f"\n>>> You created a {self._age} year old {self._breed} named {self._name}!")
 
     @property
     def name(self):
