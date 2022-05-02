@@ -19,7 +19,7 @@ class DoggoNation():
     def enter_doggo(self):
         if debug: print("called enter_doggo()")
         
-        self.list_activities("your dog")
+        self.list_activities()
 
         while True:
             # select and process activity
@@ -33,14 +33,15 @@ class DoggoNation():
             if next_option == constants.HELP:
                 os.system("clear")
                 if len(self.dog_entries) == 0:
-                    self.list_activities("your dog")
+                    self.list_activities()
                     continue
 
                 self.list_activities(self.active_dog.name)
+                continue
 
-            elif next_option == constants.CREATE:
+            if next_option == constants.CREATE:
                 os.system("clear")
-                print("\n*** Let's Create Your Custom Dog! ***")
+                print("\n--- Create A Custom Dog ---")
 
                 # create custom dog (instantiate Dog class)
                 self.create_dog()
@@ -92,11 +93,22 @@ class DoggoNation():
                 print(f"\nLet's put {self.active_dog.name} down for a nap!")
                 self.active_dog.sleep()
 
+            elif next_option == constants.VET:
+                print(f"\nLet's take {self.active_dog.name} to the vet!")
+                self.active_dog.vet()
+
             elif next_option == constants.SWITCH:
                 if len(self.dog_entries) > 1:
+                    os.system("clear")
+                    print("\n--- Select A Dog ---")
                     self.active_dog = self.activate_dog()
 
-                print("\n>>> Only one dog available...to switch dogs, create a new dog")
+                else:
+                    print("\n>>> Only one dog available...to switch dogs, create a new dog")
+
+            elif next_option == constants.DELETE:
+                print("\n--- Delete a Dog ---")
+                self.delete_dog()
 
             else:
                 print(f"\n>>> Unavailable option...enter '{constants.HELP}' for help")
@@ -109,31 +121,33 @@ class DoggoNation():
             self.dog_name = input("\nEnter a dog name: ")
 
             if len(self.dog_name) > 0 and self.dog_name.isalpha():
+                self.dog_name = self.dog_name[0].upper() + self.dog_name[1:].lower()
                 break
 
-            print(">>> Enter a valid name")
+            print(">>> Enter a valid name\n")
 
 
         while True:
             try:
-                self.dog_age = int(input("\nEnter a dog age: "))
+                self.dog_age = int(input("Enter a dog age: "))
 
                 if self.dog_age >= 0:
                     break
 
-                print(">>> Enter a valid age")
+                print(">>> Enter a valid age\n")
 
             except:
-                print(">>> Enter a valid age")
+                print(">>> Enter a valid age\n")
 
 
         while True:
-            self.dog_breed = input("\nEnter a dog breed: ")
+            self.dog_breed = input("Enter a dog breed: ")
 
             if len(self.dog_breed) > 0 and self.dog_breed.isalpha():
+                self.dog_breed = self.dog_breed[0].upper() + self.dog_breed[1:].lower()
                 break
 
-            print(">>> Enter a valid breed")
+            print(">>> Enter a valid breed\n")
 
 
         self.entry = Dog(self.dog_name, self.dog_age, self.dog_breed)
@@ -151,6 +165,16 @@ class DoggoNation():
         else:
             print("\n>>> Dog already exists...create a different dog")
             self.create_dog()
+
+
+    def delete_dog(self):
+        if debug: print("called delete_dog()")
+
+        self.list_dogs(self.dog_entries)
+        deleted_dog = self.select_dog(self.dog_entries)
+        self.dog_entries.pop(self.dog_entries.index(deleted_dog))
+
+        print(">>> Dog removed from list")
 
 
     def list_dogs(self, dog_list):
@@ -172,7 +196,7 @@ class DoggoNation():
         # if trace: print(f"Dog List: {dog_list}")
 
         while True:
-            input_name = input("\nEnter the dog's name you wish to interact with: ")
+            input_name = input("\nEnter the dog's name: ")
 
             input_name = input_name[0].upper() + input_name[1:].lower()
 
@@ -189,7 +213,7 @@ class DoggoNation():
                     break
 
             if not dog_found:    
-                print("Dog not found")
+                print(">>> Dog not found")
                 continue
 
             break
@@ -200,7 +224,8 @@ class DoggoNation():
         dog_age = selected_dog.age
         dog_breed = selected_dog.breed
 
-        print(f"\n>>> You selected {dog_name} the {dog_age} year old {dog_breed}!")
+        print(f"\n>>> You selected {dog_name} the {dog_age} year old {dog_breed}")
+
         return selected_dog
 
 
@@ -208,7 +233,6 @@ class DoggoNation():
         if debug: print("called activate_dog()")
 
         if len(self.dog_entries) > 1:
-            print("\n*** Let's Select A Dog! ***")
             self.list_dogs(self.dog_entries)
             activated_dog = self.select_dog(self.dog_entries)
 
@@ -218,13 +242,13 @@ class DoggoNation():
         return activated_dog
         
 
-    def list_activities(self, dog_name):
+    def list_activities(self, dog_name=None):
         if debug: print("called list_activities()")
 
         if not dog_name:
-            dog_name = "Your Dog"
+            dog_name = "your dog"
 
-        self.activities = [f"Change {dog_name}'s name", f"Get {dog_name}'s age", f"Get {dog_name}'s breed", f"Feed {dog_name}", f"Walk {dog_name}", f"Let {dog_name} potty", f"Give {dog_name} a treat", f"Put {dog_name} to bed\n", "Create new dog", "Switch dogs", "Exit program"]
+        self.activities = [f"Change {dog_name}'s name", f"Get {dog_name}'s age", f"Get {dog_name}'s breed", f"Feed {dog_name}", f"Walk {dog_name}", f"Let {dog_name} potty", f"Give {dog_name} a treat", f"Put {dog_name} to bed", f"Take {dog_name} to the vet\n", "Create new dog", "Switch/Select dogs", "Delete a dog", "Exit program"]
 
         print(f"\nBelow is a list of activities you can do with {dog_name}:\n")
 
@@ -271,6 +295,9 @@ class DoggoNation():
         if constants.SLEEP in split_input or constants.NAP in split_input or constants.BED in split_input or constants.REST in split_input: 
             return constants.SLEEP
 
+        if constants.VET in split_input or constants.SICK in split_input:
+            return constants.VET
+
         if constants.EXIT in split_input: 
             return constants.EXIT
             
@@ -282,6 +309,9 @@ class DoggoNation():
         
         if constants.HELP in split_input:
             return constants.HELP
+
+        if constants.DELETE in split_input or constants.REMOVE in split_input:
+            return constants.DELETE
 
         return
 

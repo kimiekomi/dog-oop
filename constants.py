@@ -26,4 +26,8 @@ BUILD = "build"
 MAKE = "make"
 ADD = "add"
 HELP = "h"
+DELETE = "delete"
+REMOVE = "remove"
+VET = "vet"
+SICK = "sick"
 

@@ -8,9 +8,9 @@ trace = True
 
 class Dog:
     def __init__(self, name, age, breed):
-        self._name = name[0].upper() + name[1:].lower()
+        self._name = name
         self._age = age
-        self._breed = breed[0].upper() + breed[1:].lower()
+        self._breed = breed
 
         self.is_hungry = False
         self.requires_potty = False
@@ -122,6 +122,15 @@ class Dog:
         
         time.sleep(1)
         print(f">>> {self.name} ate the yummy treat!")
+
+
+    def vet(self):
+        if debug: print("called treat()")
+
+        print("\n>>> there there there")
+
+        time.sleep(1)
+        print(f">>> {self.name} is all better now!")
 
 
 if __name__ == "__main__":
