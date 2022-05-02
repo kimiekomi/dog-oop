@@ -24,5 +24,6 @@ NEW = "new"
 CREATE = "create"
 BUILD = "build"
 MAKE = "make"
+ADD = "add"
 HELP = "h"
 
