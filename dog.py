@@ -10,7 +10,7 @@ class Dog:
     def __init__(self, name, age, breed):
         self._name = name[0].upper() + name[1:].lower()
         self._age = age
-        self._breed = breed
+        self._breed = breed[0].upper() + breed[1:].lower()
 
         self.is_hungry = False
         self.requires_potty = False

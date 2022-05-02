@@ -110,9 +110,6 @@ class DoggoNation():
             self.dog_age = input("Enter a dog age (2): ") or 2
             self.dog_breed = str(input("Enter a dog breed (Malamute): ")) or "Malamute"
 
-            self.dog_name = self.dog_name[0].upper() + self.dog_name[1:].lower()
-            self.dog_breed = self.dog_breed[0].upper() + self.dog_breed[1:].lower()
-
             self.entry = Dog(self.dog_name, self.dog_age, self.dog_breed)
 
             already_exist = False
@@ -151,21 +148,24 @@ class DoggoNation():
 
             input_name = input_name[0].upper() + input_name[1:].lower()
 
-            count = 0
+            dog_found = False
             index = None
 
             for dog in dog_list:
 
                 if input_name == dog.name:
-                    count += 1
+                    dog_found = True
+                    
+                if dog_found:
                     index = dog_list.index(dog)
+                    break
 
-            if count == 0:    
+            if not dog_found:    
                 print("Dog not found")
                 continue
-            
-            break
 
+            break
+                
         selected_dog = dog_list[index]
 
         dog_name = selected_dog.name

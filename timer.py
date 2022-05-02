@@ -3,7 +3,7 @@
 import time
 
 debug = False
-trace = False
+trace = True
 
 class Timer:
     def __init__(self):
@@ -18,10 +18,11 @@ class Timer:
         if self.timer_started:
             print("Timer already started")
 
-        self.timer_started = True
-        self.start_time = time.perf_counter()
+        else:
+            self.timer_started = True
+            self.start_time = time.perf_counter()
 
-        if trace: print(f"Start Time: {self.start_time:0.1f}")
+            if trace: print(f"Start Time: {self.start_time:0.1f}")
 
     
     def check_time(self):
@@ -30,11 +31,11 @@ class Timer:
         if not self.timer_started:
             print("Timer has NOT started")
 
-        self.current_time = time.perf_counter()
+        else:
+            self.current_time = time.perf_counter()
+            print(f"Current Time: {self.current_time:0.1f}")
 
-        print(f"Current Time: {self.current_time:0.1f}")
-
-        return self.current_time
+            return self.current_time
 
 
     def stop(self):
@@ -43,10 +44,11 @@ class Timer:
         if not self.timer_started:
             print("Timer has NOT started")
 
-        self.stop_time = time.perf_counter()
-        self.timer_started = False
+        else:
+            self.stop_time = time.perf_counter()
+            self.timer_started = False
 
-        if trace: print(f"Stop Time: {self.stop_time:0.1f}")
+            if trace: print(f"Stop Time: {self.stop_time:0.1f}")
 
     
     def elapsed_time(self):
@@ -55,23 +57,33 @@ class Timer:
         if not self.timer_started:
             print("Timer has NOT started")
 
-        self.stop_time = time.perf_counter()
-        self.total_time = self.stop_time - self.start_time
+        else:
+            self.stop_time = time.perf_counter()
+            self.total_time = self.stop_time - self.start_time
 
-        if trace: print(f"Elapsed Time: {self.elapsed_time:0.1f} seconds")
+            if trace: print(f"Elapsed Time: {self.total_time:0.1f} seconds")
 
         return self.total_time
 
 
 if __name__ == "__main__":
     timer = Timer()
-    time.sleep(2)
-    timer.start()
-    time.sleep(1)
-    timer.stop()
+   
+    # time.sleep(2)
+    # timer.start()
+    # time.sleep(1)
+    # timer.stop()
+    # timer.check_time()
+    # time.sleep(1)
+    # timer.start()
+    # timer.check_time()
+    # time.sleep(2)
+    # timer.stop()
 
-    print()
-    
+    # timer.start()
+    # time.sleep(2)
+    # timer.start()
+
     time.sleep(2)
     timer.start()
     time.sleep(1)
