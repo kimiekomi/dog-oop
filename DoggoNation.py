@@ -14,6 +14,8 @@ class DoggoNation():
         print("\nWelcome to Doggo Nation! A place where you can create and interact with virtual dogs.\n")
 
         self.dog_entries = []
+        self.walk_count = 0
+        self.treat_count = 0
 
 
     def enter_doggo(self):
