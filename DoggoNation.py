@@ -80,16 +80,25 @@ class DoggoNation():
                 self.active_dog.eat()
 
             elif next_option == constants.WALK:
-                print(f"\nLet's take {self.active_dog.name} for a walk!")
-                self.active_dog.walk()
+                if self.walk_count > 3:
+                    print(f"\n{self.active_dog.name} is tired from all the walks today...maybe she should take a nap")
+                    
+                else:
+                    print(f"\nLet's take {self.active_dog.name} for a walk!")
+                    self.active_dog.walk()
+                    self.walk_count += 1
 
             elif next_option == constants.POTTY:
                 print(f"\nLet's take {self.active_dog.name} to potty!")
                 self.active_dog.potty()
 
             elif next_option == constants.TREAT:
-                print(f"\nLet's give {self.active_dog.name} a treat!")
-                self.active_dog.treat()
+                if self.walk_count > 3:
+                    print(f"\n{self.active_dog.name} has a stomachache from too many treats...maybe she should visit the vet")
+
+                else:
+                    print(f"\nLet's give {self.active_dog.name} a treat!")
+                    self.active_dog.treat()
 
             elif next_option == constants.SLEEP:
                 print(f"\nLet's put {self.active_dog.name} down for a nap!")
